@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'UserController@index');
+Route::get('/logout', 'UserController@logout');
+
 Route::post('/branch', 'UserController@login');
-Route::get('/logout', 'IndexController@destroy');
+
+Route::get('/basic/user', 'UserController@create');
 
 Route::get('/business', 'BusinessController@index');
 Route::get('/construction', 'ConstructionController@index');

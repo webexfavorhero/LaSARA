@@ -12,6 +12,9 @@
     <link href='//fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,500,600,700,800,900' rel='stylesheet' type='text/css'>
     <!--web-fonts-->
+    {{--bootstrap css, js--}}
+    <link rel="stylesheet" href="https://getbootstrap.com/dist/css/bootstrap.min.css"/>
+    <script src="https://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     {{--favicon--}}
     <link rel="shortcut icon" href="{!! asset('assets/images/favicon.ico')  !!} ">
     {{--favicon--}}

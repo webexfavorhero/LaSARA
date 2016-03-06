@@ -13,10 +13,15 @@
             <h2>シャインエアー</h2>
         </div>
         <div class="mail-form">
+            {{-- Error Message --}}
+            @if (Session::has('error'))
+                <div class="error">{{ Session::get('error') }}</div>
+            @endif
+
             {!! Form::open(['url' => '/branch']) !!}
-                <input type="text" name="username" placeholder="Enter your name...." required=""/>
-                <input type="password" name="password"  class="pass" placeholder="Password" required=""/>
-                <input type="submit" value="submit">
+                <input type="text" name="username" placeholder="ユーザー名" required=""/>
+                <input type="password" name="password"  class="pass" placeholder="パスワード" required=""/>
+                <input type="submit" value="提出する">
             {!! Form::close() !!}
             <a href="#"><p>次回からオートログインする</p></a>
         </div>

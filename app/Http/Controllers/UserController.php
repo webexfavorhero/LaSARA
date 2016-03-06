@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use Session;
+
 use App\Http\Controllers\Controller;
 
 use App\User;
@@ -18,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('login');
     }
 
     /**
@@ -31,15 +32,56 @@ class UserController extends Controller
         $username = $input['username'];
         $password = $input['password'];
 
-        $user = DB::table('users')->where('username', $username)->where('password', $password)->get();
+        $manager = DB::table('manager')->where('username', $username)->where('password', $password)->first();
 
-        if ($user) {
-            $status = 'Logged In';
-        } else {
-            $status = 'Failed Login';
+        if ($manager)
+        {
+            // Assignment session as manager
+            Session::set('auth', 'manager');
+
+            return redirect('/basic/user');
         }
+        else
+        {
+            $user = DB::table('users')->where('username', $username)->where('password', $password)->first();
 
-        return view('welcome', compact('username', 'password', 'status'));
+            $permission = "";
+
+            // Permission for editable user/readable user
+            if ($user) {
+                $permission = $user->permission;
+            }
+
+            if ($permission == '1')
+            {
+                // Assignment session as editable user (permission == 1)
+                Session::set('auth', 'edit_user');
+
+                return view('welcome');
+            }
+            else if ($permission == '0')
+            {
+                // Assignment session as readable user (permission == 0)
+                Session::set('auth', 'comm_user');
+
+                return view('welcome');
+            }
+            else
+            {
+                Session::flash('error', 'メールアドレス，またはライセンスキーが違います。');
+                return redirect('/');
+            }
+        }
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function logout()
+    {
+        // Free session
+        Session::set('auth', '');
+        return redirect('/');
     }
 
     /**
@@ -49,7 +91,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('basic.user');
     }
 
     /**
