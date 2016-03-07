@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Request;
 use DB;
+use App\Http\Requests\CreateUserRequest;
 
 class UserController extends Controller
 {
@@ -100,9 +101,23 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        $input = $request->all();
+
+        $username = $input['username'];
+        $user = DB::table('users')->where('username', $username)->first();
+
+        if ($user)
+        {
+            Session::flash('error', '既に同じユーザー名を存在します。');
+        }
+        else
+        {
+            User::create($input);
+            Session::flash('success', '正常に作成。');
+        }
+        return redirect('basic/user');
     }
 
     /**

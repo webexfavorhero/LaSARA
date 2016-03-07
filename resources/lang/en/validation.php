@@ -36,7 +36,7 @@ return [
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
     'email'                => 'The :attribute must be a valid email address.',
     'exists'               => 'The selected :attribute is invalid.',
-    'filled'               => 'The :attribute field is required.',
+    'filled'               => ':attribute フィールドが必要です。',
     'image'                => 'The :attribute must be an image.',
     'in'                   => 'The selected :attribute is invalid.',
     'integer'              => 'The :attribute must be an integer.',
@@ -52,13 +52,13 @@ return [
     'min'                  => [
         'numeric' => 'The :attribute must be at least :min.',
         'file'    => 'The :attribute must be at least :min kilobytes.',
-        'string'  => 'The :attribute must be at least :min characters.',
+        'string'  => ':attributeは :min 文字以上でなければなりません。',
         'array'   => 'The :attribute must have at least :min items.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
     'regex'                => 'The :attribute format is invalid.',
-    'required'             => 'The :attribute field is required.',
+    'required'             => ':attributeは フィールドが必要です。',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_with'        => 'The :attribute field is required when :values is present.',
     'required_with_all'    => 'The :attribute field is required when :values is present.',
@@ -104,6 +104,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'username' => 'ユーザー名',
+        'password' => 'パスワード'
+    ],
 
 ];

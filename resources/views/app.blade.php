@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>シャインエアー</title>
-    {!! Html::style('assets/css/site.css') !!}
     <!-- Custom Theme files -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,13 +11,17 @@
     <link href='//fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,500,600,700,800,900' rel='stylesheet' type='text/css'>
     <!--web-fonts-->
-    {{--bootstrap css, js--}}
-    <link rel="stylesheet" href="https://getbootstrap.com/dist/css/bootstrap.min.css"/>
-    <script src="https://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     {{--favicon--}}
     <link rel="shortcut icon" href="{!! asset('assets/images/favicon.ico')  !!} ">
     {{--favicon--}}
+    {{--site.css--}}
+    {!! Html::style('assets/css/site.css') !!}
+    {{--admin.css--}}
+    {!! Html::style('assets/css/admin.css') !!}
+    {{--site.js--}}
     <script src="{!! asset('assets/js/site.js') !!}"></script>
+    {{--admin.js--}}
+    <script src="{!! asset('assets/js/admin.js') !!}"></script>
     <script>$(document).ready(function(c) {
             $('.close').on('click', function(c){
                 $('.mail-section').fadeOut('slow', function(c){
