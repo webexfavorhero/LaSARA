@@ -92,7 +92,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('basic.user');
+        $users = DB::table('users')->orderBy('created_at', 'DESC')->get();
+        return view('basic.user.index', compact('users'));
     }
 
     /**
@@ -139,7 +140,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = DB::table('users')->where('id', $id)->first();
+
+        $users = DB::table('users')->orderBy('created_at', 'DESC')->get();
+
+        return view('basic.user.edit', compact('user', 'users'));
     }
 
     /**
@@ -149,9 +154,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateUserRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->update($request->all());
+
+        return redirect('/basic/user');
     }
 
     /**
@@ -162,6 +171,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return redirect('/basic/user');
     }
 }

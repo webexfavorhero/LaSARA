@@ -287,24 +287,6 @@ body{
     font-family: 'Raleway', sans-serif;
     transition: ease 1s;
 }
-.register-form input[type="submit"]:hover {
-    font-size: 1.3em;
-    padding: .5em .3em;
-    width: 35%;
-    border: none;
-    text-transform: capitalize;
-    outline: none;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    background: #23dc60;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-    margin: 0 30%;
-    font-family: 'Raleway', sans-serif;
-    transition: ease 1s;
-}
 /*Show*/
 .show-section {
     width: 60%;
@@ -324,11 +306,59 @@ body{
     font-size: 1.25em;
     font-weight: bold;
 }
+    /*tbody scrolling*/
+thead, tbody, tr, td, th {
+    display: block;
+}
 thead {
     background: #757d72;
+    color: white;
+    height: 30px;
+    overflow-y: auto;
+}
+thead th {
+    text-align: center;
+    font-weight: 600;
 }
 tbody {
     background: #c2c6c7;
+    height: 400px;
+    overflow-y: scroll;
+}
+tbody td, thead th {
+    float: left;
+}
+tbody tr:hover {
+    color: #ff7500;
+}
+    /*tbody scrolling end*/
+td.td-permission-cell {
+    text-align: center;
+    cursor: pointer;
+}
+td.td-edit-cell {
+    text-align: center;
+    color: #657883;
+    cursor: pointer;
+    transition: ease 1s;
+}
+td.td-edit-cell:hover {
+    text-align: center;
+    color: #239b8e;
+    cursor: pointer;
+    transition: ease 1s;
+}
+td.td-remove-cell {
+    text-align: center;
+    color: #383c3b;
+    cursor: pointer;
+    transition: ease 1s;
+}
+td.td-remove-cell:hover {
+    text-align: center;
+    color: #ee684d;
+    cursor: pointer;
+    transition: ease 1s;
 }
 /*menu*/
 .menu-container {

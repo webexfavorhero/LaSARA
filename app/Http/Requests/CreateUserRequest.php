@@ -24,10 +24,9 @@ class CreateUserRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required|min:3',
+            'username' => 'required',
             'password' => 'required',
-            'permission' => '',
-            '_token' => ''
+            'permission' => ''
         ];
     }
 }

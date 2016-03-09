@@ -16,7 +16,7 @@ class OfficemanController extends Controller
      */
     public function index()
     {
-        //
+        return view('basic.officeman.index');
     }
 
     /**
@@ -26,7 +26,7 @@ class OfficemanController extends Controller
      */
     public function create()
     {
-        return view('basic.officeman');
+        //
     }
 
     /**

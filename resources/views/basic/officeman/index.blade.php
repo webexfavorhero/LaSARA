@@ -1,4 +1,4 @@
-@extends('basic.layout1')
+@extends('basic.basic')
 
 @section('basic-content')
     <div class="header">
