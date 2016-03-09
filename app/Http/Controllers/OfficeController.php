@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 use App\Office;
-use App\User;
 use Session;
 use Request;
 use DB;
@@ -43,9 +42,42 @@ class OfficeController extends Controller
     public function store(CreateOfficeRequest $request)
     {
         $input = $request->all();
-        Office::create($input);
 
-        return redirect('basic/office.index');
+        $v_index = $input['v_index'];
+        $office = Office::where('v_index', $v_index)->first();
+
+        if ($office)
+        {
+            Session::flash('error', '既に同じ管理番号を存在します。');
+            return redirect('/basic/office');
+        }
+        else
+        {
+            $huri_office_name = $input['huri_office_name'];
+            $office = Office::where('huri_office_name', $huri_office_name)->first();
+
+            if ($office)
+            {
+                Session::flash('error', '既に同じ営業所のフリガナ名を存在します。');
+                return redirect('/basic/office');
+            }
+            else
+            {
+                $office_name = $input['office_name'];
+                $office = Office::where('office_name', $office_name)->first();
+
+                if ($office) {
+                    Session::flash('error', '既に同じ営業所名を存在します。');
+                    return redirect('/basic/office');
+                }
+                else
+                {
+                    Office::create($input);
+                    Session::flash('success', '正常に作成。');
+                    return redirect('/basic/office');
+                }
+            }
+        }
     }
 
     /**
@@ -82,10 +114,45 @@ class OfficeController extends Controller
      */
     public function update(CreateOfficeRequest $request, $id)
     {
-        $office = Office::findOrFail($id);
-        $office->update($request->all());
+        $office_ = Office::findOrFail($id);
 
-        return redirect('basic/office/');
+        $input = $request->all();
+
+        $v_index = $input['v_index'];
+        $office = Office::where('v_index', $v_index)->first();
+
+        if ($office)
+        {
+            Session::flash('error', '既に同じ管理番号を存在します。');
+            return redirect()->back();
+        }
+        else
+        {
+            $huri_office_name = $input['huri_office_name'];
+            $office = Office::where('huri_office_name', $huri_office_name)->first();
+
+            if ($office)
+            {
+                Session::flash('error', '既に同じ営業所のフリガナ名を存在します。');
+                return redirect()->back();
+            }
+            else
+            {
+                $office_name = $input['office_name'];
+                $office = Office::where('office_name', $office_name)->first();
+
+                if ($office) {
+                    Session::flash('error', '既に同じ営業所名を存在します。');
+                    return redirect()->back();
+                }
+                else
+                {
+                    $office_->update($input);
+                    Session::flash('success', '正常に更新。');
+                    return redirect('/basic/office');
+                }
+            }
+        }
     }
 
     /**
@@ -99,6 +166,6 @@ class OfficeController extends Controller
         $office = Office::findOrFail($id);
         $office->delete();
 
-        return redirect('basic/office');
+        return redirect('/basic/office');
     }
 }

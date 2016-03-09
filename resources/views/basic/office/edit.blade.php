@@ -6,7 +6,7 @@
     </div>
     {{--Register user--}}
     <div class="register-section">
-        <span class="part-header">エディット</span>
+        <span class="part-header">営業所エディット</span>
         <div class="register-form">
             {{-- Error Message --}}
             @if (Session::has('error'))
@@ -25,15 +25,15 @@
             {!! Form::open(['method' => 'PATCH', 'url' => '/basic/office/' . $office->id]) !!}
             <div class="custom-input-group">
                 <a class="custom-label">管理番号</a>
-                <input type="text" name="v_index" placeholder="管理番号"/>
+                <input type="text" name="v_index" placeholder="管理番号" value="{{ $office->v_index }}"/>
             </div>
             <div class="custom-input-group">
                 <a class="custom-label">フリガナ</a>
-                <input type="text" name="huri_office_name" placeholder="フリガナ"/>
+                <input type="text" name="huri_office_name" placeholder="フリガナ" value="{{ $office->huri_office_name }}"/>
             </div>
             <div class="custom-input-group">
                 <a class="custom-label">営業所名</a>
-                <input type="text" name="office_name" placeholder="営業所名"/>
+                <input type="text" name="office_name" placeholder="営業所名" value="{{ $office->office_name }}"/>
             </div>
             <input type="submit" value="更新">
             {!! Form::close() !!}

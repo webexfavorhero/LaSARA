@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Controllers\Controller;
 
 use App\User;
@@ -155,11 +156,21 @@ class UserController extends Controller
      */
     public function update(CreateUserRequest $request, $id)
     {
-        $user = User::findOrFail($id);
+        $user_ = User::findOrFail($id);
 
-        $user->update($request->all());
+        $input = $request->all();
 
-        return redirect('/basic/user');
+        $user = User::where('username', $input['username'])->first();
+
+        if ($user)
+        {
+            Session::flash('error', '既に同じユーザー名を存在します。');
+            return redirect()->back();
+        } else {
+            $user_->update($input);
+            Session::flash('success', '正常に更新。');
+            return redirect('/basic/user');
+        }
     }
 
     /**

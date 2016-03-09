@@ -6,7 +6,7 @@
     </div>
     {{--Register user--}}
     <div class="register-section">
-        <span class="part-header">新登録</span>
+        <span class="part-header">営業所新登録</span>
         <div class="register-form">
             {{-- Error Message --}}
             @if (Session::has('error'))

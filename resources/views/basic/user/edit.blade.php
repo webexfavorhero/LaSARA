@@ -6,7 +6,7 @@
     </div>
     {{--Update user--}}
     <div class="register-section">
-        <span class="part-header">エディット</span>
+        <span class="part-header">ユーザーエディット</span>
         <div class="register-form">
             {{-- Error Message --}}
             @if (Session::has('error'))
@@ -25,11 +25,11 @@
             {!! Form::open(['method' => 'PATCH', 'url' => '/basic/user/' . $user->id]) !!}
             <div class="custom-input-group">
                 <a class="custom-label">ユーザー名</a>
-                <input type="text" name="username" placeholder="ユーザー名"/>
+                <input type="text" name="username" placeholder="ユーザー名" value="{{ $user->username }}"/>
             </div>
             <div class="custom-input-group">
                 <a class="custom-label">パスワード</a>
-                <input type="password" name="password" placeholder="パスワード"/>
+                <input type="password" name="password" placeholder="パスワード" value="{{ $user->password }}"/>
             </div>
             <input type="checkbox" name="permissionCheck" id="permissionCheck" class="checkbox" @if($user->permission == '1') checked @endif ><span class="checkbox-label">編集可能な権限</span>
             <input type="hidden" name="permission" id="permission" value="{{ $user->permission }}"/>
