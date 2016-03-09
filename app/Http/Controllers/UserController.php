@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Session;
-
 use App\Http\Controllers\Controller;
 
 use App\User;
+use Session;
 use Request;
 use DB;
 use App\Http\Requests\CreateUserRequest;

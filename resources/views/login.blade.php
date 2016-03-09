@@ -23,7 +23,7 @@
                 <input type="password" name="password"  class="pass" placeholder="パスワード" required=""/>
                 <input type="submit" value="提出する">
             {!! Form::close() !!}
-            <a href="#"><p>次回からオートログインする</p></a>
+            <a href="#" style="text-decoration: none !important;"><p>次回からオートログインする</p></a>
         </div>
         <div class="clear"> </div>
     </div>

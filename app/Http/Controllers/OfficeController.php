@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-use App\Manager;
+use App\Office;
+use App\User;
 use Session;
 use Request;
 use DB;
+use App\Http\Requests\CreateOfficeRequest;
 
-class OfficemanController extends Controller
+class OfficeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +20,8 @@ class OfficemanController extends Controller
      */
     public function index()
     {
-        return view('basic.officeman.index');
+        $offices = Office::all();
+        return view('basic.office.index', compact('offices'));
     }
 
     /**
@@ -37,9 +40,12 @@ class OfficemanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateOfficeRequest $request)
     {
-        //
+        $input = $request->all();
+        Office::create($input);
+
+        return redirect('basic/office.index');
     }
 
     /**
@@ -61,7 +67,10 @@ class OfficemanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $office = Office::findOrFail($id);
+        $offices = Office::all();
+
+        return view('basic.office.edit', compact('offices', 'office'));
     }
 
     /**
@@ -71,9 +80,12 @@ class OfficemanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateOfficeRequest $request, $id)
     {
-        //
+        $office = Office::findOrFail($id);
+        $office->update($request->all());
+
+        return redirect('basic/office/');
     }
 
     /**
@@ -84,6 +96,9 @@ class OfficemanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $office = Office::findOrFail($id);
+        $office->delete();
+
+        return redirect('basic/office');
     }
 }

@@ -23,8 +23,14 @@
                 </ul>
             @endif
             {!! Form::open(['url' => '/basic/user']) !!}
-            <input type="text" name="username" placeholder="ユーザー名"/>
-            <input type="password" name="password"  class="pass" placeholder="パスワード"/>
+            <div class="custom-input-group">
+                <a class="custom-label">ユーザー名</a>
+                <input type="text" name="username" placeholder="ユーザー名"/>
+            </div>
+            <div class="custom-input-group">
+                <a class="custom-label">パスワード</a>
+                <input type="password" name="password" placeholder="パスワード"/>
+            </div>
             <input type="checkbox" name="permissionCheck" id="permissionCheck" class="checkbox"><span class="checkbox-label">編集可能な権限</span>
             <input type="hidden" name="permission" id="permission" value="0"/>
             <input type="submit" value="登録">
@@ -33,7 +39,7 @@
     </div>
     {{--Show users--}}
     <div class="show-section">
-        <span class="part-header">ユーザー示す</span>
+        <span class="part-header">ユーザーリスト</span>
         <table class="table table-bordered">
             <thead>
                 <tr>

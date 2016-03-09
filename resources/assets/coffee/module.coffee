@@ -15,18 +15,18 @@ $( ->
   ###
   $('.td-edit-cell').click ->
     num = $(this).attr('data-num')
-    id = document.getElementById('id' + num).value
-    scope = document.getElementById('scope').value
-    category = document.getElementById('category').value
+    id = $('#id' + num).val()
+    scope = $('#scope').val()
+    category = $('#category').val()
     location.href = '/' + scope + '/' + category + '/' + id + '/edit'
   ###
   # Delete function
   ###
   $('.td-remove-cell').click ->
+    num = $(this).attr('data-num')
+    id = $('#id' + num).val()
+    scope = $('#scope').val()
+    category = $('#category').val()
     if (confirm('あなたが本当にこれを削除しますか？'))
-      num = $(this).attr('data-num')
-      id = document.getElementById('id' + num).value
-      scope = document.getElementById('scope').value
-      category = document.getElementById('category').value
       location.href = '/' + scope + '/' + category + '/' + id + '/delete'
 )

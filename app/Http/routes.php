@@ -10,12 +10,20 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+/**
+ * Login/Logout
+ */
 // First page
 Route::get('/', 'UserController@index');
 // Login
 Route::post('/branch', 'UserController@login');
 // Logout
 Route::get('/logout', 'UserController@logout');
+
+/**
+ * Basic
+ */
 // User
 Route::get('/basic/user', 'UserController@create');
 Route::post('/basic/user', 'UserController@store');
@@ -24,6 +32,13 @@ Route::patch('/basic/user/{id}', 'UserController@update');
 Route::get('/basic/user/{id}/delete', 'UserController@destroy');
 // Officeman
 Route::get('/basic/officeman', 'OfficemanController@index');
+// Office
+Route::resource('/basic/office', 'OfficeController');
+Route::get('/basic/office/{office}/delete', 'OfficeController@destroy');
+
+/**
+ * Application
+ */
 // Business Calendar
 Route::get('/business', 'BusinessController@index');
 // Construction Calendar

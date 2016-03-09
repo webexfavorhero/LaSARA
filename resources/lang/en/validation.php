@@ -106,7 +106,11 @@ return [
 
     'attributes' => [
         'username' => 'ユーザー名',
-        'password' => 'パスワード'
+        'password' => 'パスワード',
+        'v_index' => '管理番号',
+        'huri_office_name' => 'フリガナ',
+        'office_name' => '営業所名'
+
     ],
 
 ];
