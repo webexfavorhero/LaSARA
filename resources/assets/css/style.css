@@ -463,7 +463,7 @@ td.td-remove-cell:hover {
     letter-spacing: 30px;
 }
 .header .basic-top h1 {
-    letter-spacing: 100px;
+    letter-spacing: 50px;
 }
 .header {
     margin-left: 4em;
@@ -611,7 +611,7 @@ td.td-remove-cell:hover {
         font-size: 1em;
     }
     .header .basic-top h1 {
-        letter-spacing: 50px;
+        letter-spacing: 30px;
     }
     .register-form select {
         padding: .89em .5em;

@@ -116,7 +116,9 @@ return [
         'other_cond' => '他項目',
         'code' => 'コード',
         'huri_office_man_name' => 'フリガナ',
-        'office_man_name' => '氏名'
+        'office_man_name' => '氏名',
+        'huri_company_name' => 'フリガナ',
+        'company_name' => '企業名'
     ],
 
 ];

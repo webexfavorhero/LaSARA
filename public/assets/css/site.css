@@ -721,7 +721,7 @@ td.td-remove-cell:hover {
 }
 
 .header .basic-top h1 {
-  letter-spacing: 100px;
+  letter-spacing: 50px;
 }
 
 .header {
@@ -903,7 +903,7 @@ td.td-remove-cell:hover {
   }
 
   .header .basic-top h1 {
-    letter-spacing: 50px;
+    letter-spacing: 30px;
   }
 
   .register-form select {

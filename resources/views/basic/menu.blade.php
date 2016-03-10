@@ -13,6 +13,15 @@
             <a href="{{ url('basic/officeman') }}">担当</a>
         </li>
         <li>
+            <a href="{{ url('basic/company') }}">企業</a>
+        </li>
+        <li>
+            <a href="{{ url('basic/companyman') }}">代表者</a>
+        </li>
+        <li>
+            <a href="{{ url('basic/manager') }}">管理者</a>
+        </li>
+        <li>
             <a href="{{ url('/logout') }}">ログアウト</a>
         </li>
     </ul>

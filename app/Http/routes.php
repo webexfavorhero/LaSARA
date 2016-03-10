@@ -41,6 +41,9 @@ Route::get('/basic/item/{item}/delete', 'ItemController@destroy');
 // Officeman
 Route::resource('/basic/officeman', 'OfficemanController');
 Route::get('/basic/officeman/{officeman}/delete', 'OfficemanController@destroy');
+// Company
+Route::resource('/basic/company', 'CompanyController');
+Route::get('/basic/company/{company}/delete', 'CompanyController@destroy');
 
 /**
  * Application

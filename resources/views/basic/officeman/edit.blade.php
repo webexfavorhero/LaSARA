@@ -120,7 +120,7 @@
                     <td width="7%">
                         {{ $officeman->v_index }}
                     </td>
-                    <td width="5%">
+                    <td width="5%" class="td-permission-cell">
                         <span class="glyphicon @if($officeman->v_status == '1') glyphicon-star @else glyphicon-star-empty @endif"></span>
                     </td>
                     <td width="5%" class="td-edit-cell" data-num="{{ $i }}">
