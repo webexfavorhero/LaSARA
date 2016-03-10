@@ -64,26 +64,26 @@
                 <th width="5%">
                     番号
                 </th>
-                <th width="5%">
+                <th width="10%">
                     管理番号
                 </th>
-                <th width="40%">
+                <th width="35%">
                     フリガナ
                 </th>
-                <th width="25%">
+                <th width="20%">
                     項目名
                 </th>
                 <th width="10%">
                     表示色
                 </th>
-                <th width="5%">
+                <th width="10%">
                     他項目
                 </th>
                 <th width="5%">
-                    エディット
+                    編集
                 </th>
                 <th width="5%">
-                    デリート
+                    削除
                 </th>
             </tr>
             </thead>
@@ -94,19 +94,19 @@
                     <td width="5%" style="text-align: center;">
                         {{ $i ++ }}
                     </td>
-                    <td width="5%">
+                    <td width="10%">
                         {{ $item->v_index }}
                     </td>
-                    <td width="40%">
+                    <td width="35%">
                         {{ $item->huri_item_name }}
                     </td>
-                    <td width="25%">
+                    <td width="20%">
                         {{ $item->item_name }}
                     </td>
                     <td width="10%" class="td-permission-cell">
                         <span class="glyphicon glyphicon-text-color" style="color: @if($item->mark_color == '1') #000000 @elseif($item->mark_color == '2') #ff0000 @elseif($item->mark_color == '3') #0000ff @endif" ></span>
                     </td>
-                    <td width="5%" class="td-permission-cell">
+                    <td width="10%" class="td-permission-cell">
                         <span class="glyphicon @if($item->other_cond == '1') glyphicon-star @else glyphicon-star-empty @endif"></span>
                     </td>
                     <td width="5%" class="td-edit-cell" data-num="{{ $i }}">

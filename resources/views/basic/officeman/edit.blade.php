@@ -4,9 +4,9 @@
     <div class="header">
         <span class="basic-header">営業所担当者管理</span>
     </div>
-    {{--Register new officeman--}}
+    {{--Update officeman--}}
     <div class="register-section">
-        <span class="part-header">担当者新登録</span>
+        <span class="part-header">担当者エディット</span>
         <div class="register-form">
             {{-- Error Message --}}
             @if (Session::has('error'))
@@ -22,36 +22,41 @@
                     @endforeach
                 </ul>
             @endif
-            {!! Form::open(['method' => 'POST', 'url' => '/basic/officeman']) !!}
+            {!! Form::open(['method' => 'PATCH', 'url' => '/basic/officeman/'.$officeman->id]) !!}
             <div class="custom-input-group">
                 <a class="custom-label">コード</a>
-                <input type="text" name="code" placeholder="コード"/>
+                <input type="text" name="code" placeholder="コード" value="{{ $officeman->code }}"/>
             </div>
             <div class="custom-input-group">
                 <a class="custom-label">フリガナ</a>
-                <input type="text" name="huri_office_man_name" placeholder="フリガナ"/>
+                <input type="text" name="huri_office_man_name" placeholder="フリガナ" value="{{ $officeman->huri_office_man_name }}"/>
             </div>
             <div class="custom-input-group">
                 <a class="custom-label">氏名</a>
-                <input type="text" name="office_man_name" placeholder="氏名"/>
+                <input type="text" name="office_man_name" placeholder="氏名" value="{{ $officeman->office_man_name }}"/>
             </div>
             <div class="custom-input-group">
                 <a class="custom-label">営業所</a>
                 <select name="office_id" id="office_id">
                     @foreach($offices as $office)
-                        <option value="{{ $office->id }}">{{ $office->office_name }}</option>
+                        @if($office->id == $officeman->office_id)
+                            <?= $selected = 'selected'; ?>
+                        @else
+                            <?= $selected = ''; ?>
+                        @endif
+                        <option value="{{ $office->id }}" {{ $selected }}>{{ $office->office_name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="custom-input-group">
                 <a class="custom-label">表示順</a>
-                <input type="text" name="v_index" placeholder="表示順"/>
+                <input type="text" name="v_index" placeholder="表示順" value="{{ $officeman->v_index }}"/>
             </div>
             <div class="custom-input-group">
                 <a class="custom-label">表示</a>
                 <select name="v_status" id="v_status">
-                    <option value="1">表示する</option>
-                    <option value="0">非表示</option>
+                    <option value="1" @if($officeman->v_status == '1') selected @endif>表示する</option>
+                    <option value="0" @if($officeman->v_status == '0') selected @endif>非表示</option>
                 </select>
             </div>
             <input type="submit" value="登録">

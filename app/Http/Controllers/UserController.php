@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Controllers\Controller;
 
 use App\User;
@@ -177,6 +176,7 @@ class UserController extends Controller
 
         $user->delete();
 
+        Session::flash('success', '正常に削除されました。');
         return redirect('/basic/user');
     }
 }

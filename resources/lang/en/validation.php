@@ -109,8 +109,14 @@ return [
         'password' => 'パスワード',
         'v_index' => '管理番号',
         'huri_office_name' => 'フリガナ',
-        'office_name' => '営業所名'
-
+        'huri_item_name' => 'フリガナ',
+        'office_name' => '営業所名',
+        'item_name' => '項目名',
+        'mark_color' => '表示色',
+        'other_cond' => '他項目',
+        'code' => 'コード',
+        'huri_office_man_name' => 'フリガナ',
+        'office_man_name' => '氏名'
     ],
 
 ];

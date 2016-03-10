@@ -133,7 +133,7 @@ class OfficeController extends Controller
     {
         $office = Office::findOrFail($id);
         $office->delete();
-
+        Session::flash('success', '正常に削除されました。');
         return redirect('/basic/office');
     }
 }

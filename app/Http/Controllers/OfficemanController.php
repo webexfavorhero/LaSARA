@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-use App\Manager;
+use App\OfficeMan;
+use App\Office;
 use Session;
 use Request;
 use DB;
+use App\Http\Requests\CreateOfficeManRequest;
 
 class OfficemanController extends Controller
 {
@@ -18,7 +20,16 @@ class OfficemanController extends Controller
      */
     public function index()
     {
-        return view('basic.officeman.index');
+        $officemans = OfficeMan::all();
+
+        // Converting office_id to office_name
+        foreach($officemans as $officeman) {
+            $office = Office::where('id', $officeman['office_id'])->first();
+            $officeman['office_name'] = $office['office_name'];
+        }
+
+        $offices = Office::all();
+        return view('basic.officeman.index', compact('officemans', 'offices'));
     }
 
     /**
@@ -37,9 +48,25 @@ class OfficemanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateOfficeManRequest $request)
     {
-        //
+        $input = $request->all();
+
+        $code = $input['code'];
+
+        $officeman = OfficeMan::where('code', $code)->first();
+
+        if ($officeman)
+        {
+            Session::flash('error', '既に同じコードを存在します。');
+            return redirect()->back();
+        }
+        else
+        {
+            OfficeMan::create($input);
+            Session::flash('success', '正常に作成。');
+            return redirect('/basic/officeman');
+        }
     }
 
     /**
@@ -61,7 +88,18 @@ class OfficemanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $officeman = OfficeMan::findOrFail($id);
+        $officemans = OfficeMan::all();
+
+        // Converting office_id to office_name
+        foreach($officemans as $officeman_) {
+            $office = Office::where('id', $officeman_['office_id'])->first();
+            $officeman_['office_name'] = $office['office_name'];
+        }
+
+        $offices = Office::all();
+
+        return view('basic.officeman.edit', compact('officeman', 'officemans', 'offices'));
     }
 
     /**
@@ -71,9 +109,15 @@ class OfficemanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateOfficeManRequest $request, $id)
     {
-        //
+        $input = $request->all();
+        $officeman = OfficeMan::findOrFail($id);
+
+        $officeman->update($input);
+
+        Session::flash('success', '正常に更新。');
+        return redirect('/basic/officeman');
     }
 
     /**
@@ -84,6 +128,9 @@ class OfficemanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $officeman = OfficeMan::findOrFail($id);
+        $officeman->delete();
+        Session::flash('success', '正常に削除されました。');
+        return redirect('/basic/officeman');
     }
 }
