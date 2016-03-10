@@ -35,6 +35,9 @@ Route::get('/basic/officeman', 'OfficemanController@index');
 // Office
 Route::resource('/basic/office', 'OfficeController');
 Route::get('/basic/office/{office}/delete', 'OfficeController@destroy');
+// Item
+Route::resource('/basic/item', 'ItemController');
+Route::get('/basic/item/{item}/delete', 'ItemController@destroy');
 
 /**
  * Application

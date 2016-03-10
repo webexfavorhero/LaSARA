@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-use App\Office;
+use App\Item;
 use Session;
 use Request;
 use DB;
-use App\Http\Requests\CreateOfficeRequest;
+use App\Http\Requests\CreateItemRequest;
 
-class OfficeController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +19,9 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $offices = Office::all();
-        return view('basic.office.index', compact('offices'));
+        $items = Item::all();
+
+        return view('basic.item.index', compact('items'));
     }
 
     /**
@@ -39,42 +40,42 @@ class OfficeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateOfficeRequest $request)
+    public function store(CreateItemRequest $request)
     {
         $input = $request->all();
 
         $v_index = $input['v_index'];
-        $office = Office::where('v_index', $v_index)->first();
+        $item = Item::where('v_index', $v_index)->first();
 
-        if ($office)
+        if ($item)
         {
             Session::flash('error', '既に同じ管理番号を存在します。');
-            return redirect('/basic/office');
+            return redirect('/basic/item');
         }
         else
         {
-            $huri_office_name = $input['huri_office_name'];
-            $office = Office::where('huri_office_name', $huri_office_name)->first();
+            $huri_item_name = $input['huri_item_name'];
+            $item = Item::where('huri_item_name', $huri_item_name)->first();
 
-            if ($office)
+            if ($item)
             {
-                Session::flash('error', '既に同じ営業所のフリガナ名を存在します。');
-                return redirect('/basic/office');
+                Session::flash('error', '既に同じ項目のフリガナ名を存在します。');
+                return redirect('/basic/item');
             }
             else
             {
-                $office_name = $input['office_name'];
-                $office = Office::where('office_name', $office_name)->first();
+                $item_name = $input['item_name'];
+                $item = Item::where('item_name', $item_name)->first();
 
-                if ($office) {
-                    Session::flash('error', '既に同じ営業所名を存在します。');
-                    return redirect('/basic/office');
+                if ($item) {
+                    Session::flash('error', '既に同じ項目名を存在します。');
+                    return redirect('/basic/item');
                 }
                 else
                 {
-                    Office::create($input);
+                    Item::create($input);
                     Session::flash('success', '正常に作成。');
-                    return redirect('/basic/office');
+                    return redirect('/basic/item');
                 }
             }
         }
@@ -99,10 +100,10 @@ class OfficeController extends Controller
      */
     public function edit($id)
     {
-        $office = Office::findOrFail($id);
-        $offices = Office::all();
+        $item = Item::findOrFail($id);
+        $items = Item::all();
 
-        return view('basic.office.edit', compact('offices', 'office'));
+        return view('basic.item.edit', compact('items', 'item'));
     }
 
     /**
@@ -112,15 +113,15 @@ class OfficeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateOfficeRequest $request, $id)
+    public function update(CreateItemRequest $request, $id)
     {
-        $office_ = Office::findOrFail($id);
+        $item_ = Item::findOrFail($id);
 
         $input = $request->all();
 
-        $office_->update($input);
+        $item_->update($input);
         Session::flash('success', '正常に更新。');
-        return redirect('/basic/office');
+        return redirect('/basic/item');
     }
 
     /**
@@ -131,9 +132,9 @@ class OfficeController extends Controller
      */
     public function destroy($id)
     {
-        $office = Office::findOrFail($id);
-        $office->delete();
+        $item = Item::findOrFail($id);
+        $item->delete();
 
-        return redirect('/basic/office');
+        return redirect('/basic/item');
     }
 }

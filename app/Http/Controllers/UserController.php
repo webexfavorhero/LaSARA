@@ -160,17 +160,9 @@ class UserController extends Controller
 
         $input = $request->all();
 
-        $user = User::where('username', $input['username'])->first();
-
-        if ($user)
-        {
-            Session::flash('error', '既に同じユーザー名を存在します。');
-            return redirect()->back();
-        } else {
-            $user_->update($input);
-            Session::flash('success', '正常に更新。');
-            return redirect('/basic/user');
-        }
+        $user_->update($input);
+        Session::flash('success', '正常に更新。');
+        return redirect('/basic/user');
     }
 
     /**

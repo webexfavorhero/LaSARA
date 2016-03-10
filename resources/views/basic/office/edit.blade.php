@@ -4,7 +4,7 @@
     <div class="header">
         <span class="basic-header">営業所管理</span>
     </div>
-    {{--Register user--}}
+    {{--Update office--}}
     <div class="register-section">
         <span class="part-header">営業所エディット</span>
         <div class="register-form">
@@ -39,7 +39,7 @@
             {!! Form::close() !!}
         </div>
     </div>
-    {{--Show users--}}
+    {{--Show offices--}}
     <div class="show-section">
         <span class="part-header">営業所リスト</span>
         <table class="table table-bordered">
