@@ -2,11 +2,11 @@
 
 @section('basic-content')
     <div class="header">
-        <span class="basic-header">営業所担当者管理</span>
+        <span class="basic-header">企業代表者管理</span>
     </div>
-    {{--Register new officeman--}}
+    {{--Register new companyman--}}
     <div class="register-section">
-        <span class="part-header">担当者新登録</span>
+        <span class="part-header">代表者新登録</span>
         <div class="register-form">
             {{-- Error Message --}}
             @if (Session::has('error'))
@@ -22,68 +22,54 @@
                     @endforeach
                 </ul>
             @endif
-            {!! Form::open(['method' => 'POST', 'url' => '/basic/officeman']) !!}
-            <div class="custom-input-group">
-                <a class="custom-label">コード</a>
-                <input type="text" name="code" placeholder="コード"/>
-            </div>
-            <div class="custom-input-group">
-                <a class="custom-label">フリガナ</a>
-                <input type="text" name="huri_office_man_name" placeholder="フリガナ"/>
-            </div>
-            <div class="custom-input-group">
-                <a class="custom-label">氏名</a>
-                <input type="text" name="office_man_name" placeholder="氏名"/>
-            </div>
+            {!! Form::open(['method' => 'POST', 'url' => '/basic/companyman']) !!}
             <div class="custom-input-group">
                 <a class="custom-label">営業所</a>
-                <select name="office_id" id="office_id">
+                <select class="office_select" name="office_id" id="office_id">
+                    <option value="">- 営業所選択 -</option>
                     @foreach($offices as $office)
                         <option value="{{ $office->id }}">{{ $office->office_name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="custom-input-group">
-                <a class="custom-label">表示順</a>
-                <input type="text" name="v_index" placeholder="表示順"/>
+                <a class="custom-label">企業</a>
+                <select class="company_select" name="company_id" id="company_id">
+                    <option value="">- 企業選択 -</option>
+                </select>
             </div>
             <div class="custom-input-group">
-                <a class="custom-label">表示</a>
-                <select name="v_status" id="v_status">
-                    <option value="1">表示する</option>
-                    <option value="0">非表示</option>
-                </select>
+                <a class="custom-label">フリガナ</a>
+                <input type="text" name="huri_company_man_name" placeholder="フリガナ"/>
+            </div>
+            <div class="custom-input-group">
+                <a class="custom-label">代表者名</a>
+                <input type="text" name="company_man_name" placeholder="代表者名"/>
             </div>
             <input type="submit" value="登録">
             {!! Form::close() !!}
         </div>
     </div>
-    {{--Show officemans--}}
+    {{--Show companymans--}}
     <div class="show-section">
-        <span class="part-header">担当者リスト</span>
+        <span class="part-header">代表者リスト</span>
         <table class="table table-bordered">
             <thead>
             <tr>
                 <th width="5%">
                     番号
                 </th>
-                <th width="7%">
-                    コード
-                </th>
-                <th width="36%">
-                    フリガナ
-                </th>
-                <th width="20%">
-                    氏名
-                </th>
                 <th width="10%">
                     営業所
                 </th>
-                <th width="7%">
-                    表示順
+                <th width="20%">
+                    企業
                 </th>
-                <th width="5%">
-                    表示
+                <th width="35%">
+                    フリガナ
+                </th>
+                <th width="20%">
+                    代表者名
                 </th>
                 <th width="5%">
                     編集
@@ -95,29 +81,24 @@
             </thead>
             <tbody>
             <span style="display: none;">{{ $i = 1 }}</span>
-            @foreach($officemans as $officeman)
+            @foreach($companymans as $companyman)
                 <tr>
                     <td width="5%" style="text-align: center;">
                         {{ $i ++ }}
                     </td>
-                    <td width="7%">
-                        {{ $officeman->code }}
-                    </td>
-                    <td width="36%">
-                        {{ $officeman->huri_office_man_name }}
+                    <td width="10%">
+                        {{ $companyman->office_name }}
                     </td>
                     <td width="20%">
-                        {{ $officeman->office_man_name }}
+                        {{ $companyman->company_name }}
                     </td>
-                    <td width="10%">
-                        {{ $officeman->office_name }}
+                    <td width="35%">
+                        {{ $companyman->huri_company_man_name }}
                     </td>
-                    <td width="7%">
-                        {{ $officeman->v_index }}
+                    <td width="20%">
+                        {{ $companyman->company_man_name }}
                     </td>
-                    <td width="5%" class="td-permission-cell">
-                        <span class="glyphicon @if($officeman->v_status == '1') glyphicon-star @else glyphicon-star-empty @endif"></span>
-                    </td>
+
                     <td width="5%" class="td-edit-cell" data-num="{{ $i }}" title="このアイテムを編集するためのクリック">
                         <span class="glyphicon glyphicon-edit"></span>
                     </td>
@@ -125,12 +106,13 @@
                         <span class="glyphicon glyphicon-remove-circle"></span>
                     </td>
 
-                    <input type="hidden" name="id{{ $i }}" id="id{{ $i }}" value="{{ $officeman->id }}"/>
-                    <input type="hidden" name="scope" id="scope" value="basic"/>
-                    <input type="hidden" name="category" id="category" value="officeman"/>
+                    <input type="hidden" name="id{{ $i }}" id="id{{ $i }}" value="{{ $companyman->id }}"/>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+    <input type="hidden" name="scope" id="scope" value="basic"/>
+    <input type="hidden" name="category" id="category" value="companyman"/>
+    <input type="hidden" name="url" id="url" value="{{ URL::to('basic/companyman_companiesFromOffice') }}">
 @stop

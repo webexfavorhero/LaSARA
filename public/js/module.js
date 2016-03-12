@@ -46,7 +46,7 @@
     /*
      * Select Color Change
      */
-    return $('.color-select').change(function() {
+    $('.color-select').change(function() {
       var current;
       current = $(this).val();
       if (current === '1') {
@@ -68,6 +68,23 @@
           border: '1px solid #0000ff'
         });
       }
+    });
+
+    /*
+     * Select Office Change
+     */
+    return $('.office_select').change(function() {
+      var current, route;
+      current = $(this).val();
+      route = $('#url').val();
+      return $.get(route, {
+        office_id: current
+      }, function(data) {
+        $('.company_select').empty();
+        return $.each(JSON.parse(data), function(index, companyObj) {
+          return $('.company_select').append('<option value="' + companyObj.id + '">' + companyObj.company_name + '</option>');
+        });
+      });
     });
   });
 

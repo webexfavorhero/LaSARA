@@ -79,10 +79,10 @@
                     <td width="10%" class="td-permission-cell">
                         <span class="glyphicon @if($user->permission == '1') glyphicon-star @else glyphicon-star-empty @endif"></span>
                     </td>
-                    <td width="10%" class="td-edit-cell" data-num="{{ $i }}">
+                    <td width="10%" class="td-edit-cell" data-num="{{ $i }}" title="このアイテムを編集するためのクリック">
                         <span class="glyphicon glyphicon-edit"></span>
                     </td>
-                    <td width="10%" class="td-remove-cell">
+                    <td width="10%" class="td-remove-cell" data-num="{{ $i }}" title="この項目を削除する]をクリックします">
                         <span class="glyphicon glyphicon-remove-circle"></span>
                     </td>
 

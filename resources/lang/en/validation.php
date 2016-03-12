@@ -118,7 +118,11 @@ return [
         'huri_office_man_name' => 'フリガナ',
         'office_man_name' => '氏名',
         'huri_company_name' => 'フリガナ',
-        'company_name' => '企業名'
+        'company_name' => '企業名',
+        'office_id' => '営業所',
+        'company_id' => '企業',
+        'huri_company_man_name' => 'フリガナ',
+        'company_man_name' => '代表者',
     ],
 
 ];

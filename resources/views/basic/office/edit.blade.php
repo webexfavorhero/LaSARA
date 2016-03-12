@@ -81,10 +81,10 @@
                     <td width="30%">
                         {{ $office->office_name }}
                     </td>
-                    <td width="10%" class="td-edit-cell" data-num="{{ $i }}">
+                    <td width="10%" class="td-edit-cell" data-num="{{ $i }}" title="このアイテムを編集するためのクリック">
                         <span class="glyphicon glyphicon-edit"></span>
                     </td>
-                    <td width="10%" class="td-remove-cell" data-num="{{ $i }}">
+                    <td width="10%" class="td-remove-cell" data-num="{{ $i }}" title="この項目を削除する]をクリックします">
                         <span class="glyphicon glyphicon-remove-circle"></span>
                     </td>
 

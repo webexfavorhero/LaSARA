@@ -44,6 +44,14 @@ Route::get('/basic/officeman/{officeman}/delete', 'OfficemanController@destroy')
 // Company
 Route::resource('/basic/company', 'CompanyController');
 Route::get('/basic/company/{company}/delete', 'CompanyController@destroy');
+// CompanyMan
+Route::resource('/basic/companyman', 'CompanyManController');
+Route::get('/basic/companyman/{companyman}/delete', 'CompanyManController@destroy');
+    // - Select Office Change
+Route::get('basic/companyman_companiesFromOffice', 'CompanyManController@companiesFromOffice');
+// Manager
+Route::resource('basic/manager', 'ManagerController');
+Route::get('basic/manager/{manager}/delete', 'ManagerController@destroy');
 
 /**
  * Application

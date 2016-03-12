@@ -40,4 +40,15 @@ $( ->
       $('.custom-color-label').css({color: '#ff0000', background: '#ff0000', border: '1px solid #ff0000'})
     else if current == '3'
       $('.custom-color-label').css({color: '#0000ff', background: '#0000ff', border: '1px solid #0000ff'})
+  ###
+  # Select Office Change
+  ###
+  $('.office_select').change ->
+    current = $(this).val()
+    route = $('#url').val()
+    $.get route, {office_id: current}, (data) ->
+      $('.company_select').empty()
+      $.each JSON.parse(data), (index, companyObj) ->
+        $('.company_select').append('<option value="'+companyObj.id+'">'+companyObj.company_name+'</option>')
+
 )

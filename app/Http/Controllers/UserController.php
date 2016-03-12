@@ -161,7 +161,7 @@ class UserController extends Controller
 
         $user_->update($input);
         Session::flash('success', '正常に更新。');
-        return redirect('/basic/user');
+        return redirect('basic/user');
     }
 
     /**
@@ -177,6 +177,6 @@ class UserController extends Controller
         $user->delete();
 
         Session::flash('success', '正常に削除されました。');
-        return redirect('/basic/user');
+        return redirect('basic/user');
     }
 }
