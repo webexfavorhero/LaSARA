@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "Illuminate/html": "^5.0",
         "twitter/bootstrap": "^3.3",
-        "components/jquery": "^2.2"
+        "components/jquery": "^2.2",
+        "nesbot/carbon": "^1.21"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

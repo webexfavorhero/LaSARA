@@ -16,14 +16,16 @@ class CreateBusiCalTable extends Migration
     {
         Schema::create('busi_cals', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('main_date')->default('0000-00-00');     // main date of business calendar
             $table->integer('office_id');                         // index of office
             $table->integer('office_man_id');                     // index of officer
-            $table->dateTime('main_date')->default('0000-00-00'); // main date of business calendar
+            $table->integer('cell_id');                           // index of cell(default 1~8, in some case addable)
             $table->string('address');                            // address of field
             $table->string('field_name');                         // name of field
             $table->integer('trans_item_id');                     // index of transaction
             $table->string('time');                               // time of period
-            $table->integer('order_check')->default('0');         // status of order/estimate. 0: estimate(color-green), 1: order(color-pink)
+            $table->integer('order_check')->default('0');         // status of order/estimate. 0: empty(color-white), 1: estimate(color-green), 2: order(color-pink)
+            $table->integer('edit_status')->default('0');         // status of editing or not editing. 0: not editing, 1: editing
             $table->timestamps();
         });
     }

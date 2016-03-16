@@ -11,17 +11,32 @@
     <link href='//fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,500,600,700,800,900' rel='stylesheet' type='text/css'>
     <!--web-fonts-->
+
     {{--favicon--}}
     <link rel="shortcut icon" href="{!! asset('assets/images/favicon.ico')  !!} ">
-    {{--favicon--}}
-    {{--site.css--}}
+
+
+
+    {{--site.css(Custom Populate Css)--}}
     {!! Html::style('assets/css/site.css') !!}
-    {{--admin.css--}}
+
+    {{--admin.css(Merged Plugin CSSs)--}}
     {!! Html::style('assets/css/admin.css') !!}
+
+    {{--Sass(Custom Css)--}}
+    {!! Html::style('css/app.css') !!}
+
+
+
     {{--site.js--}}
     <script src="{!! asset('assets/js/site.js') !!}"></script>
-    {{--admin.js--}}
+
+    {{--admin.js(Merged Plugin JSs)--}}
     <script src="{!! asset('assets/js/admin.js') !!}"></script>
+
+    {{--CoffeeScript(Main Custom JS)--}}
+    <script src="{!! asset('js/module.js') !!}"></script>
+
     <script>$(document).ready(function(c) {
             $('.close').on('click', function(c){
                 $('.mail-section').fadeOut('slow', function(c){
@@ -30,9 +45,6 @@
             });
         });
     </script>
-
-    {{--CoffeeScript--}}
-    <script src="{!! asset('js/module.js') !!}"></script>
 
     @yield('styles')
     @yield('scripts')

@@ -407,6 +407,10 @@ body {
   transition: ease 2s;
 }
 
+a.non-decoration {
+  text-decoration: none !important;
+}
+
 /**
  * Sections
  */
@@ -602,38 +606,53 @@ a.custom-color-label {
 
 /*tbody scrolling*/
 
-thead,
-tbody,
-tr,
-td,
-th {
+.show-section thead {
   display: block;
 }
 
-thead {
+.show-section tbody {
+  display: block;
+}
+
+.show-section tr {
+  display: block;
+}
+
+.show-section tr td {
+  display: block;
+}
+
+.show-section thead th {
+  display: block;
+}
+
+.show-section thead {
   background: #757d72;
   color: white;
   height: 30px;
   overflow-y: auto;
 }
 
-thead th {
+.show-section thead th {
   text-align: center;
   font-weight: 600;
 }
 
-tbody {
+.show-section tbody {
   background: #c2c6c7;
   height: 400px;
   overflow-y: scroll;
 }
 
-tbody td,
-thead th {
+.show-section tbody td {
   float: left;
 }
 
-tbody tr:hover {
+.show-section thead th {
+  float: left;
+}
+
+.show-section tbody tr:hover {
   color: #ff7500;
 }
 

@@ -1,0 +1,32 @@
+#business-calendar {
+  background-color: #ffffff;
+  margin: 1em;
+  padding: 1.25em;
+  border-radius: 5px;
+}
+
+#business-calendar table thead tr th {
+  text-align: center;
+  background-color: #0000ff;
+  color: #ffffff;
+}
+
+#business-calendar table tbody tr td {
+  text-align: center;
+  padding: 0.1em !important;
+}
+
+#business-calendar table tbody tr td.vertical-align-td {
+  text-align: center;
+  color: blue;
+  vertical-align: middle;
+}
+
+#business-calendar table tbody tr td table.deep-2-table {
+  width: 100%;
+  margin-bottom: -10px !important;
+}
+
+#business-calendar table tbody tr td table tr td table.deep-3-table {
+  margin-bottom: 1px !important;
+}

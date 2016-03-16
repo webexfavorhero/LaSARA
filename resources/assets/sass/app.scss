@@ -1,2 +1,52 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+#business-calendar {
+  background-color: #ffffff;
+  margin: 1em;
+  padding: 1.25em;
+  border-radius: 5px;
+
+  table {
+    thead {
+      tr {
+        th {
+          text-align: center;
+          background-color: #0000ff;
+          color: #ffffff;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          text-align: center;
+          padding: 0.1em !important;
+
+          &.vertical-align-td {
+            text-align: center;
+            color: blue;
+            vertical-align: middle;
+          }
+
+          table {
+            &.deep-2-table {
+              width: 100%;
+              margin-bottom: -10px !important;
+            }
+
+            tr {
+              td {
+                table {
+                  &.deep-3-table {
+                    margin-bottom: 1px !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
