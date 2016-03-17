@@ -1,5 +1,6 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
+$border-style-1px-black: 1px solid #000000;
+$border-style-1px-grey: 1px solid #737476;
 #business-calendar {
   background-color: #ffffff;
   margin: 1em;
@@ -7,6 +8,7 @@
   border-radius: 5px;
 
   table {
+
     thead {
       tr {
         th {
@@ -27,19 +29,77 @@
             text-align: center;
             color: blue;
             vertical-align: middle;
+            border: $border-style-1px-black;
+          }
+
+          &.border-black-td {
+            border: $border-style-1px-black;
+          }
+
+          &.border-bottom-back-td {
+            border-bottom: $border-style-1px-black;
           }
 
           table {
             &.deep-2-table {
               width: 100%;
-              margin-bottom: -10px !important;
+            }
+
+            &.deep-2-table.item-table {
+              border-bottom: $border-style-1px-black;
             }
 
             tr {
               td {
                 table {
                   &.deep-3-table {
-                    margin-bottom: 1px !important;
+                    margin: .02em !important;
+
+                    td {
+                      &.border-black-1-td {
+                        border-top: $border-style-1px-grey;
+                        border-left: $border-style-1px-grey;
+                        border-right: $border-style-1px-grey;
+                      }
+                      &.border-black-2-td {
+                        border-left: $border-style-1px-grey;
+                        border-right: $border-style-1px-grey;
+                      }
+                      &.border-black-3-td {
+                        border-left: $border-style-1px-grey;
+                        border-right: $border-style-1px-grey;
+                      }
+                      &.border-black-4-td {
+                        border-left: $border-style-1px-grey;
+                        border-right: $border-style-1px-grey;
+                        border-bottom: $border-style-1px-grey;
+                      }
+
+                      input {
+                        border: none;
+                        padding: 0px;
+                      }
+
+                      select {
+                        border: none;
+                        padding: 1px 0;
+                      }
+                    }
+                  }
+                  &.deep-3-table.label-table {
+                    td {
+                      border: 1px solid #000000;
+                      background-color: #969696;
+                      color: #ffffff;
+
+                      input {
+                        background-color: #969696;
+                        color: #ffffff;
+                        border: none;
+                        padding: 0px;
+                        text-align: center;
+                      }
+                    }
                   }
                 }
               }

@@ -20,13 +20,71 @@
   text-align: center;
   color: blue;
   vertical-align: middle;
+  border: 1px solid #000000;
+}
+
+#business-calendar table tbody tr td.border-black-td {
+  border: 1px solid #000000;
+}
+
+#business-calendar table tbody tr td.border-bottom-back-td {
+  border-bottom: 1px solid #000000;
 }
 
 #business-calendar table tbody tr td table.deep-2-table {
   width: 100%;
-  margin-bottom: -10px !important;
+}
+
+#business-calendar table tbody tr td table.deep-2-table.item-table {
+  border-bottom: 1px solid #000000;
 }
 
 #business-calendar table tbody tr td table tr td table.deep-3-table {
-  margin-bottom: 1px !important;
+  margin: .02em !important;
+}
+
+#business-calendar table tbody tr td table tr td table.deep-3-table td.border-black-1-td {
+  border-top: 1px solid #737476;
+  border-left: 1px solid #737476;
+  border-right: 1px solid #737476;
+}
+
+#business-calendar table tbody tr td table tr td table.deep-3-table td.border-black-2-td {
+  border-left: 1px solid #737476;
+  border-right: 1px solid #737476;
+}
+
+#business-calendar table tbody tr td table tr td table.deep-3-table td.border-black-3-td {
+  border-left: 1px solid #737476;
+  border-right: 1px solid #737476;
+}
+
+#business-calendar table tbody tr td table tr td table.deep-3-table td.border-black-4-td {
+  border-left: 1px solid #737476;
+  border-right: 1px solid #737476;
+  border-bottom: 1px solid #737476;
+}
+
+#business-calendar table tbody tr td table tr td table.deep-3-table td input {
+  border: none;
+  padding: 0px;
+}
+
+#business-calendar table tbody tr td table tr td table.deep-3-table td select {
+  border: none;
+  padding: 1px 0;
+}
+
+#business-calendar table tbody tr td table tr td table.deep-3-table.label-table td {
+  border: 1px solid #000000;
+  background-color: #969696;
+  color: #ffffff;
+}
+
+#business-calendar table tbody tr td table tr td table.deep-3-table.label-table td input {
+  background-color: #969696;
+  color: #ffffff;
+  border: none;
+  padding: 0px;
+  text-align: center;
 }

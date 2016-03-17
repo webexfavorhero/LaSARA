@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BusinessCalendar;
+use App\Item;
 use App\Office;
 use App\OfficeMan;
 use Illuminate\Http\Request;
@@ -28,6 +29,23 @@ class BusinessController extends Controller
         $year  = Carbon::today()->format('Y');
         $month = Carbon::today()->format('n');
 
+        // days of current month
+        if ($year % 4 == 0 && $month == 2)
+        {
+            $days = 29;
+        }
+        else if ($year % 4 != 0 && $month == 2)
+        {
+            $days = 28;
+        }
+        else if ($month == 1 || $month == 3 || $month == 5 || $month == 7 || $month == 8 || $month == 10 || $month == 12)
+        {
+            $days = 31;
+        }
+        else
+        {
+            $days = 30;
+        }
 
         /**
          * Initialization busi_cal table with init values for this month if it is empty.
@@ -87,36 +105,16 @@ class BusinessController extends Controller
             $office_man['office_name'] = $office['office_name'];
         }
 
-        // days of current month
-        if ($year % 4 == 0 && $month == 2)
-        {
-            $days = 29;
-        }
-        else if ($year % 4 != 0 && $month == 2)
-        {
-            $days = 28;
-        }
-        else if ($month == 1 || $month == 3 || $month == 5 || $month == 7 || $month == 8 || $month == 10 || $month == 12)
-        {
-            $days = 31;
-        }
-        else
-        {
-            $days = 30;
-        }
-
         // date
         $date = [];
         $date['year'] = $year;
         $date['month'] = $month;
         $date['days'] = $days;
 
-        for($i = 0; $i <$days; $i ++)
-        {
+        // all transaction items
+        $trans_items = Item::all();
 
-        }
-
-        return view('business.index', compact('office_mans', 'date'));
+        return view('business.index', compact('office_mans', 'date', 'trans_items'));
     }
 
     /**
