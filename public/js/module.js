@@ -73,7 +73,7 @@
     /*
      * Select Office Change
      */
-    return $('.office_select').change(function() {
+    $('.office_select').change(function() {
       var current, route;
       current = $(this).val();
       route = $('#url').val();
@@ -83,6 +83,44 @@
         $('.company_select').empty();
         return $.each(JSON.parse(data), function(index, companyObj) {
           return $('.company_select').append('<option value="' + companyObj.id + '">' + companyObj.company_name + '</option>');
+        });
+      });
+    });
+
+    /*
+     * Business Calendar Enter Value (update database leaving focus triggered)
+     */
+    return $('#business-calendar').delegate("*", "focus blue", function() {
+      var elem;
+      elem = $(this);
+      return elem.blur(function() {
+        var elem_address, elem_address_val, elem_field_name_val, elem_time, elem_trans_item_id_val, id, name, url, val;
+        url = $('#url').val();
+        name = elem.attr('name');
+        id = elem.attr('id');
+        val = elem.val();
+        elem_address = $("input[id=" + id + "][name='address']");
+        if (val === "" || val === '0') {
+          elem_address_val = elem_address.val();
+          elem_field_name_val = $("input[id=" + id + "][name='field_name']").val();
+          elem_trans_item_id_val = $("select[id=" + id + "][name='trans_item_id']").val();
+          elem_time = $("input[id=" + id + "][name='time']").val();
+          if (elem_address_val === "" && elem_field_name_val === "" && elem_trans_item_id_val === "0" && elem_time === "") {
+            elem_address.css({
+              background: "#ffffff"
+            });
+          }
+        } else if (elem_address.css("background-color") !== "#ff99cc") {
+          elem_address.css({
+            background: "#ccffcc"
+          });
+        }
+        return $.get(url, {
+          name: name,
+          id: id,
+          val: val
+        }, function(response) {
+          return console.log(response);
         });
       });
     });

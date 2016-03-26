@@ -37,7 +37,8 @@
     {{--CoffeeScript(Main Custom JS)--}}
     <script src="{!! asset('js/module.js') !!}"></script>
 
-    <script>$(document).ready(function(c) {
+    <script>
+        $(document).ready(function(c) {
             $('.close').on('click', function(c){
                 $('.mail-section').fadeOut('slow', function(c){
                     $('.mail-section').remove();

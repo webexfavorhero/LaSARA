@@ -50,5 +50,26 @@ $( ->
       $('.company_select').empty()
       $.each JSON.parse(data), (index, companyObj) ->
         $('.company_select').append('<option value="'+companyObj.id+'">'+companyObj.company_name+'</option>')
-
+  ###
+  # Business Calendar Enter Value (update database leaving focus triggered)
+  ###
+  $('#business-calendar').delegate "*", "focus blue", ->
+    elem = $(this)
+    elem.blur () ->
+      url = $('#url').val()
+      name = elem.attr('name')
+      id = elem.attr('id')
+      val = elem.val()
+      elem_address = $("input[id=" + id + "][name='address']")
+      if val == "" || val == '0'
+        elem_address_val = elem_address.val();
+        elem_field_name_val = $("input[id=" + id + "][name='field_name']").val();
+        elem_trans_item_id_val = $("select[id=" + id + "][name='trans_item_id']").val();
+        elem_time = $("input[id=" + id + "][name='time']").val();
+        if elem_address_val == "" && elem_field_name_val == "" && elem_trans_item_id_val == "0" && elem_time == ""
+          elem_address.css({background: "#ffffff"})
+      else if elem_address.css("background-color") != "#ff99cc"
+        elem_address.css({background: "#ccffcc"})
+      $.get url, {name: name, id: id, val: val}, (response) ->
+        console.log(response)
 )

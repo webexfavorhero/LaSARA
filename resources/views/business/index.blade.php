@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('scripts')
+    <script src="{!! asset('js/module_update.js') !!}"></script>
+@stop
+
 @section('content')
     <section id="business-calendar">
         <table class="table table-bordered">
@@ -56,7 +60,8 @@
                             </table>
                         </td>
                         @foreach($office_mans as $office_man)
-                        <td class="border-bottom-back-td">
+                            {{--Left--}}
+                        <td class="border-bottom-black-td">
                             <table class="deep-2-table">
                                 @for($j = 0; $j < 4; $j ++)
                                     <?php
@@ -69,17 +74,17 @@
                                             <table class="table deep-3-table">
                                                 <tr>
                                                     <td class="col-sm-12 border-black-1-td">
-                                                        <input type="text" class="col-lg-12" name="" value="{{ $busi_cal['address'] }}"/>
+                                                        <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" value="{{ $busi_cal['address'] }}"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-2-td">
-                                                        <input type="text" class="col-lg-12" name="" value="{{ $busi_cal['field_name'] }}"/>
+                                                        <input type="text" class="col-lg-12" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal['field_name'] }}"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-3-td">
-                                                        <select class="col-lg-12" name="" id="">
+                                                        <select class="col-lg-12" name="trans_item_id" id="{{ $busi_cal->id }}">
                                                             <option value="0" @if($busi_cal['trans_item_id'] == 0) selected @endif></option>
                                                             @foreach($trans_items as $trans_item)
                                                                 @if($trans_item->id == $busi_cal['trans_item_id'])
@@ -87,14 +92,14 @@
                                                                 @else
                                                                     <?= $selected = "";?>
                                                                 @endif
-                                                                    <option value="{{ $trans_item->id }}">{{ $trans_item->item_name }}</option>
+                                                                    <option value="{{ $trans_item->id }}" {{ $selected }}>{{ $trans_item->item_name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-4-td">
-                                                        <input type="text" class="col-lg-12" name="" value="{{ $busi_cal['time'] }}"/>
+                                                        <input type="text" class="col-lg-12" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal['time'] }}"/>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -103,6 +108,7 @@
                                 @endfor
                             </table>
                         </td>
+                            {{--Right--}}
                         <td class="border-black-td">
                             <table class="deep-2-table">
                                 @for($j = 0; $j < 4; $j ++)
@@ -116,17 +122,17 @@
                                             <table class="table deep-3-table">
                                                 <tr>
                                                     <td class="col-sm-12 border-black-1-td">
-                                                        <input type="text" class="col-lg-12" name="" value="{{ $busi_cal['address'] }}"/>
+                                                        <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" value="{{ $busi_cal['address'] }}"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-2-td">
-                                                        <input type="text" class="col-lg-12" name="" value="{{ $busi_cal['field_name'] }}"/>
+                                                        <input type="text" class="col-lg-12" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal['field_name'] }}"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-3-td">
-                                                        <select class="col-lg-12" name="" id="">
+                                                        <select class="col-lg-12" name="trans_item_id" id="{{ $busi_cal->id }}" >
                                                             <option value="0" @if($busi_cal['trans_item_id'] == 0) selected @endif></option>
                                                             @foreach($trans_items as $trans_item)
                                                                 @if($trans_item->id == $busi_cal['trans_item_id'])
@@ -134,14 +140,14 @@
                                                                 @else
                                                                     <?= $selected = "";?>
                                                                 @endif
-                                                                <option value="{{ $trans_item->id }}">{{ $trans_item->item_name }}</option>
+                                                                <option value="{{ $trans_item->id }}" {{ $selected }}>{{ $trans_item->item_name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-4-td">
-                                                        <input type="text" class="col-lg-12" name="" value="{{ $busi_cal['time'] }}"/>
+                                                        <input type="text" class="col-lg-12" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal['time'] }}"/>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -157,5 +163,6 @@
                 @endfor
             </tbody>
         </table>
+        <input type="hidden" name="url" id="url" value="{{ URL::to('business/update') }}"/>
     </section>
 @stop

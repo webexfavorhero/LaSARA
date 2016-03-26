@@ -38,4 +38,5 @@ elixir(function(mix) {
 
     mix.sass('app.scss');
     mix.coffee('module.coffee');
+    mix.coffee('module_update.coffee');
 });

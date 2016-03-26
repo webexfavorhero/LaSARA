@@ -12,6 +12,8 @@ use Carbon\Carbon;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class BusinessController extends Controller
 {
@@ -167,9 +169,62 @@ class BusinessController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+        $name = Input::get('name');
+        $id   = Input::get('id');
+        $val  = Input::get('val');
+
+        $fields = [
+            'address',
+            'field_name',
+            'trans_item_id',
+            'time'
+        ];
+
+        $busi_cal = BusinessCalendar::where('id', $id)->first();
+        $order_check = $busi_cal['order_check'];
+
+        if ($order_check == '0'
+            && $val != "")
+        {
+            BusinessCalendar::where('id', $id)->update([$name => $val, 'order_check' => '1']);
+        }
+        else if ($val == '' || $val == '0')
+        {
+            $count = 0;
+
+            // remove current field name from fields['address', 'field_name', 'trans_item_id', 'time']
+            foreach($fields as $i => $field)
+            {
+                if($field == $name)
+                {
+                    unset($fields[$i]);
+                }
+            }
+            // check all fields beside current field have "" or 0 already
+            foreach($fields as $i => $field)
+            {
+                if($busi_cal[$field] == '' || $busi_cal[$field] == '0')
+                {
+                    $count ++;
+                }
+            }
+            // if all fields('address', 'field_name', 'trans_item_id', 'time') has "" or 0, update order_check as 0
+            if($count == 3)
+            {
+                BusinessCalendar::where('id', $id)->update([$name => $val, 'order_check' => '0']);
+            }
+            else
+            {
+                BusinessCalendar::where('id', $id)->update([$name => $val]);
+            }
+        }
+        else
+        {
+            BusinessCalendar::where('id', $id)->update([$name => $val]);
+        }
+        echo 'ok';
     }
 
     /**
