@@ -68,8 +68,78 @@ $( ->
         elem_time = $("input[id=" + id + "][name='time']").val();
         if elem_address_val == "" && elem_field_name_val == "" && elem_trans_item_id_val == "0" && elem_time == ""
           elem_address.css({background: "#ffffff"})
-      else if elem_address.css("background-color") != "#ff99cc"
+      else if elem_address.css("background-color") != "rgb(255, 153, 204)"
         elem_address.css({background: "#ccffcc"})
       $.get url, {name: name, id: id, val: val}, (response) ->
         console.log(response)
+  ###
+  # Business Calendar Order Check (Change Order Status - status of order/estimate. 0: empty(color-white), 1: estimate(color-green: #ccffcc), 2: order(color-pink: #ff99cc))
+  ###
+  $("input[name='address']").mousedown (event) ->
+    if event.which == 3
+      background_color = $(this).css("background-color")
+      if background_color != "rgb(255, 255, 255)"
+        event.preventDefault()
+        id = $(this).attr('id')
+
+        day = $(this).attr('day')
+        man_num = $(this).attr('man_num')
+        width_cell = $(this).attr('width_cell')
+        height_cell = $(this).attr('height_cell')
+
+        element = $("div[class='order_grid'][id=" + id + "]")
+        element_other = $("div[class='order_grid'][id!=" + id + "]")
+
+        display = element.css('display')
+        each_width = $(this).outerWidth()
+        each_height = $(this).outerHeight()
+
+        elem_business_calendar = $("#business-calendar")
+        constant_business_calendar_margin = elem_business_calendar.css("margin")
+        constant_business_calendar_padding = elem_business_calendar.css("padding")
+
+        constant_date_width = $("td[constant_width='date']").outerWidth()
+        constant_item_width = $("td[constant_width='item']").outerWidth()
+        constant_width = constant_business_calendar_margin + constant_business_calendar_padding + constant_date_width + constant_item_width
+
+        constant_header_margin_top_height = $(".header").outerHeight()
+        constant_thead_height = $("thead").outerHeight()
+        constant_height = constant_business_calendar_margin + constant_business_calendar_padding + constant_header_margin_top_height + constant_thead_height
+
+        width = constant_width + parseInt(man_num) * each_width * 2 + parseInt(width_cell) * each_width
+        height = constant_height + parseInt(day) * 4 * 4 * each_height + parseInt(height_cell) * each_height * 4
+
+        if display == 'none'
+          element_other.fadeOut()
+          element.fadeIn()
+          element.css
+            'display': 'inline'
+            'left': width
+            'top': height
+        else
+          element.fadeOut()
+  ###
+  # When click green span
+  ###
+  $("div.up").click () ->
+    url = $("#updateOrderStateUrl").val()
+    id = $(this).attr('id')
+    $("input[name='address'][id="+id+"]").css("background-color", "#ccffcc")
+    $.get url, {id: id, state: "1"}, (data) ->
+      console.log(data)
+  ###
+  # When click pink span
+  ###
+  $("div.down").click () ->
+    url = $("#updateOrderStateUrl").val()
+    id = $(this).attr('id')
+    $("input[name='address'][id="+id+"]").css("background-color", "#ff99cc")
+    $.get url, {id: id, state: "2"}, (data) ->
+      console.log(data)
+  ###
+  # Disabling order_div when clicking mouse button in other elements
+  ###
+  $("#business-calendar").click (event) ->
+    if event.which != 3
+      $("div.order_grid").fadeOut()
 )

@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <section id="business-calendar">
+    <section id="business-calendar" oncontextmenu="return false;">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -26,8 +26,8 @@
             <tbody>
                 @for($i = 0; $i < $date['days']; $i ++)
                     <tr>
-                        <td class="vertical-align-td">{{ $date['month'] }}/{{ $i + 1 }}/{{ $date['year'] }}</td>
-                        <td>
+                        <td class="vertical-align-td" constant_width="date">{{ $date['month'] }}/{{ $i + 1 }}/{{ $date['year'] }}</td>
+                        <td constant_width="item">
                             <table class="deep-2-table item-table">
                                 @for($j = 0; $j < 4; $j ++)
                                 <tr>
@@ -59,7 +59,7 @@
                                 @endfor
                             </table>
                         </td>
-                        @foreach($office_mans as $office_man)
+                        @foreach($office_mans as $o => $office_man)
                             {{--Left--}}
                         <td class="border-bottom-black-td">
                             <table class="deep-2-table">
@@ -74,20 +74,29 @@
                                             <table class="table deep-3-table">
                                                 <tr>
                                                     <td class="col-sm-12 border-black-1-td">
-                                                        <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" value="{{ $busi_cal['address'] }}"/>
+                                                        <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" day="{{ $i }}" man_num="{{ $o }}" width_cell="0" height_cell="{{ $j }}" value="{{ $busi_cal->address }}"/>
+                                                        {{-- Order Check --}}
+                                                        <div class="order_grid" id="{{ $busi_cal->id }}" >
+                                                            <div class="up" id="{{ $busi_cal->id }}">
+                                                                <span class="check_green_color">a</span>見積
+                                                            </div>
+                                                            <div class="down" id="{{ $busi_cal->id }}">
+                                                                <span class="check_pink_color">a</span>受注
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-2-td">
-                                                        <input type="text" class="col-lg-12" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal['field_name'] }}"/>
+                                                        <input type="text" class="col-lg-12" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal->field_name }}"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-3-td">
                                                         <select class="col-lg-12" name="trans_item_id" id="{{ $busi_cal->id }}">
-                                                            <option value="0" @if($busi_cal['trans_item_id'] == 0) selected @endif></option>
+                                                            <option value="0" @if($busi_cal->trans_item_id == 0) selected @endif></option>
                                                             @foreach($trans_items as $trans_item)
-                                                                @if($trans_item->id == $busi_cal['trans_item_id'])
+                                                                @if($trans_item->id == $busi_cal->trans_item_id)
                                                                     <?= $selected = "selected"; ?>
                                                                 @else
                                                                     <?= $selected = "";?>
@@ -99,7 +108,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-4-td">
-                                                        <input type="text" class="col-lg-12" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal['time'] }}"/>
+                                                        <input type="text" class="col-lg-12" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal->time }}"/>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -122,20 +131,29 @@
                                             <table class="table deep-3-table">
                                                 <tr>
                                                     <td class="col-sm-12 border-black-1-td">
-                                                        <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" value="{{ $busi_cal['address'] }}"/>
+                                                        <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" day="{{ $i }}" man_num="{{ $o }}" width_cell="1" height_cell="{{ $j }}" value="{{ $busi_cal->address }}"/>
+                                                        {{-- Order Check --}}
+                                                        <div class="order_grid" id="{{ $busi_cal->id }}" >
+                                                            <div class="up" id="{{ $busi_cal->id }}">
+                                                                <span class="check_green_color">a</span>見積
+                                                            </div>
+                                                            <div class="down" id="{{ $busi_cal->id }}">
+                                                                <span class="check_pink_color">a</span>受注
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-2-td">
-                                                        <input type="text" class="col-lg-12" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal['field_name'] }}"/>
+                                                        <input type="text" class="col-lg-12" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal->field_name }}"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-3-td">
                                                         <select class="col-lg-12" name="trans_item_id" id="{{ $busi_cal->id }}" >
-                                                            <option value="0" @if($busi_cal['trans_item_id'] == 0) selected @endif></option>
+                                                            <option value="0" @if($busi_cal->trans_item_id == 0) selected @endif></option>
                                                             @foreach($trans_items as $trans_item)
-                                                                @if($trans_item->id == $busi_cal['trans_item_id'])
+                                                                @if($trans_item->id == $busi_cal->trans_item_id)
                                                                     <?= $selected = "selected"; ?>
                                                                 @else
                                                                     <?= $selected = "";?>
@@ -147,7 +165,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="col-sm-12 border-black-4-td">
-                                                        <input type="text" class="col-lg-12" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal['time'] }}"/>
+                                                        <input type="text" class="col-lg-12" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal->time }}"/>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -158,11 +176,10 @@
                         </td>
                         @endforeach
                     </tr>
-                    <tr>
-                    </tr>
                 @endfor
             </tbody>
         </table>
         <input type="hidden" name="url" id="url" value="{{ URL::to('business/update') }}"/>
+        <input type="hidden" name="updateOrderStateUrl" id="updateOrderStateUrl" value="{{ URL::to('business/updateOrderState') }}"/>
     </section>
 @stop

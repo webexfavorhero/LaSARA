@@ -24,7 +24,7 @@ class CreateBusiCalTable extends Migration
             $table->string('field_name');                         // name of field
             $table->integer('trans_item_id');                     // index of transaction
             $table->string('time');                               // time of period
-            $table->integer('order_check')->default('0');         // status of order/estimate. 0: empty(color-white), 1: estimate(color-green), 2: order(color-pink)
+            $table->integer('order_check')->default('0');         // status of order/estimate. 0: empty(color-white), 1: estimate(color-green: #ccffcc), 2: order(color-pink: #ff99cc)
             $table->integer('edit_status')->default('0');         // status of editing or not editing. 0: not editing, 1: editing
             $table->timestamps();
         });

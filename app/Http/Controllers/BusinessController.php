@@ -55,8 +55,9 @@ class BusinessController extends Controller
          */
         foreach($office_mans as $office_man)
         {
+            $compare_date = Carbon::createFromDate($year, $month)->format("Y-m"); // valid exist data or not
             // check if empty for this office_man
-            $busi_cal_test = BusinessCalendar::where('office_man_id', $office_man['id'])->first();
+            $busi_cal_test = BusinessCalendar::where('office_man_id', $office_man['id'])->where('main_date', 'like', '%' . $compare_date . '%')->first();
             if ($busi_cal_test) {
 
             }
@@ -225,6 +226,18 @@ class BusinessController extends Controller
             BusinessCalendar::where('id', $id)->update([$name => $val]);
         }
         echo 'ok';
+    }
+
+    /**
+     * Update order state
+     */
+    public function updateOrderState()
+    {
+        $id    = Input::get('id');
+        $state = Input::get('state');
+
+        BusinessCalendar::where('id', $id)->update(['order_check' => $state]);
+        echo "Order State Updated";
     }
 
     /**
