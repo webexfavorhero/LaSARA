@@ -7,7 +7,7 @@
 
 #business-calendar table thead tr th {
   text-align: center;
-  background-color: #0000ff;
+  background-color: #000080;
   color: #ffffff;
 }
 
@@ -18,7 +18,7 @@
 
 #business-calendar table tbody tr td.vertical-align-td {
   text-align: center;
-  color: blue;
+  color: #000080;
   vertical-align: middle;
   border: 1px solid #000000;
 }
@@ -144,4 +144,79 @@ div.down:hover {
   background-color: #ff99cc;
   padding: 0 4px;
   margin-right: 4px;
+}
+
+#search .search-form {
+  margin: .8em .2em;
+}
+
+#search .search-form input[type="text"] {
+  padding: .5em .3em;
+  margin: .3em 0;
+  width: 60%;
+  font-size: 1em;
+  outline: none;
+  border: 1px solid #000080;
+  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  background: 347px 13px #eee;
+  font-family: 'Raleway', sans-serif;
+}
+
+#search .search-form input[type="text"][name="endDate"] {
+  padding: .5em .3em;
+  margin: .3em 0;
+  width: 100%;
+  font-size: 1em;
+  outline: none;
+  border: 1px solid #000080;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  background: 347px 13px #eee;
+  font-family: 'Raleway', sans-serif;
+}
+
+#search .search-form select {
+  padding: .56em .3em;
+  margin: .3em 0;
+  width: 60%;
+  font-size: 1em;
+  outline: none;
+  border: 1px solid #000080;
+  border-radius: 0 4px 4px 0;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  background: 347px 13px #eee;
+  font-family: 'Raleway', sans-serif;
+}
+
+#search .search-form input[type="submit"] {
+  padding: .56em .3em;
+  margin: .3em 0;
+  width: 100%;
+  font-size: 1em;
+  outline: none;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  background: 347px 13px #c0c0c0;
+  font-family: 'Raleway', sans-serif;
+}
+
+#search .search-form a.custom-label {
+  float: left;
+  width: 40%;
+  font-size: 1em;
+  text-decoration: none !important;
+  cursor: default;
+  padding: .5em .3em;
+  margin: .3em 0;
+  border: 1px solid #000080;
+  color: #fff !important;
+  border-radius: 4px 0 0 4px;
+  background: #000080;
+  text-align: center;
 }

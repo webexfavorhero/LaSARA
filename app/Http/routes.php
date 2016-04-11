@@ -58,6 +58,7 @@ Route::get('basic/manager/{manager}/delete', 'ManagerController@destroy');
  */
 // Business Calendar
 Route::get('/business', 'BusinessController@index');
+Route::post('/business', 'BusinessController@index');
 Route::get('business/update', 'BusinessController@update');
 Route::get('business/updateOrderState', 'BusinessController@updateOrderState');
 // Construction Calendar

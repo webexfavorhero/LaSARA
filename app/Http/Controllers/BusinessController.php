@@ -26,6 +26,8 @@ class BusinessController extends Controller
     {
         // All office_mans
         $office_mans = OfficeMan::where('v_status', '1')->orderBy('v_index')->get();
+        // All offices
+        $offices = Office::orderBy('v_index')->get();
 
         // current year, month
         $year  = Carbon::today()->format('Y');
@@ -117,7 +119,7 @@ class BusinessController extends Controller
         // all transaction items
         $trans_items = Item::all();
 
-        return view('business.index', compact('office_mans', 'date', 'trans_items'));
+        return view('business.index', compact('offices', 'office_mans', 'date', 'trans_items'));
     }
 
     /**

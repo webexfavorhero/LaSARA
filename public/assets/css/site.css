@@ -606,31 +606,41 @@ a.custom-color-label {
 
 /*tbody scrolling*/
 
-.show-section thead {
-  display: block;
-}
+/*.show-section thead {*/
 
-.show-section tbody {
-  display: block;
-}
+/*display: block;*/
 
-.show-section tr {
-  display: block;
-}
+/*}*/
 
-.show-section tr td {
-  display: block;
-}
+/*.show-section tbody {*/
 
-.show-section thead th {
-  display: block;
-}
+/*display: block;*/
+
+/*}*/
+
+/*.show-section tr {*/
+
+/*display: block;*/
+
+/*}*/
+
+/*.show-section tr td {*/
+
+/*display: block;*/
+
+/*}*/
+
+/*.show-section thead th {*/
+
+/*display: block;*/
+
+/*}*/
 
 .show-section thead {
   background: #757d72;
   color: white;
-  height: 30px;
-  overflow-y: auto;
+  /*height: 30px;*/
+  /*overflow-y: auto;*/
 }
 
 .show-section thead th {
@@ -640,17 +650,21 @@ a.custom-color-label {
 
 .show-section tbody {
   background: #c2c6c7;
-  height: 400px;
-  overflow-y: scroll;
+  /*height: 400px;*/
+  /*overflow-y: scroll;*/
 }
 
-.show-section tbody td {
-  float: left;
-}
+/*.show-section tbody td {*/
 
-.show-section thead th {
-  float: left;
-}
+/*float: left;*/
+
+/*}*/
+
+/*.show-section thead th {*/
+
+/*float: left;*/
+
+/*}*/
 
 .show-section tbody tr:hover {
   color: #ff7500;
