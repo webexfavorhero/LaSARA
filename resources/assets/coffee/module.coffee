@@ -142,4 +142,9 @@ $( ->
   $("#business-calendar").click (event) ->
     if event.which != 3
       $("div.order_grid").fadeOut()
+
+  ###
+  # Construction Calendar
+  ###
+
 )

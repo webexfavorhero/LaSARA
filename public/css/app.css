@@ -43,6 +43,10 @@
   margin: .02em !important;
 }
 
+#business-calendar table tbody tr td table tr td table.deep-3-table td.border-black-td {
+  border: 1px solid #737476;
+}
+
 #business-calendar table tbody tr td table tr td table.deep-3-table td.border-black-1-td {
   border-top: 1px solid #737476;
   border-left: 1px solid #737476;
@@ -218,5 +222,84 @@ div.down:hover {
   color: #fff !important;
   border-radius: 4px 0 0 4px;
   background: #000080;
+  text-align: center;
+}
+
+#construction-calendar {
+  background-color: #ffffff;
+  margin: 1em;
+  padding: 1.25em;
+  border-radius: 5px;
+}
+
+#construction-calendar table thead tr th {
+  font-size: .8em;
+  text-align: center;
+  background-color: #000080;
+  color: #ffffff;
+}
+
+#construction-calendar table tbody tr td {
+  text-align: center;
+  padding: 0.1em !important;
+}
+
+#construction-calendar table tbody tr td.vertical-align-td {
+  text-align: center;
+  color: #000080;
+  vertical-align: middle;
+  border: 1px solid #000000;
+}
+
+#construction-calendar table tbody tr td.border-black-td {
+  border: 1px solid #000000;
+}
+
+#construction-calendar table tbody tr td.border-bottom-black-td {
+  border-bottom: 1px solid #000000;
+}
+
+#construction-calendar table tbody tr td table.deep-3-table {
+  margin: .02em !important;
+}
+
+#construction-calendar table tbody tr td table.deep-3-table td.border-black-1-td {
+  border-top: 1px solid #737476;
+  border-left: 1px solid #737476;
+  border-right: 1px solid #737476;
+}
+
+#construction-calendar table tbody tr td table.deep-3-table td.border-black-2-td {
+  border-left: 1px solid #737476;
+  border-right: 1px solid #737476;
+}
+
+#construction-calendar table tbody tr td table.deep-3-table td.border-black-3-td {
+  border-left: 1px solid #737476;
+  border-right: 1px solid #737476;
+  border-bottom: 1px solid #737476;
+}
+
+#construction-calendar table tbody tr td table.deep-3-table td input {
+  border: none;
+  padding: 0px;
+}
+
+#construction-calendar table tbody tr td table.deep-3-table td select {
+  border: none;
+  padding: 1px 0;
+}
+
+#construction-calendar table tbody tr td table.deep-3-table.label-table td {
+  border: 1px solid #000000;
+  background-color: #969696;
+  color: #ffffff;
+}
+
+#construction-calendar table tbody tr td table.deep-3-table.label-table td input {
+  background-color: #969696;
+  color: #ffffff;
+  border: none;
+  padding: 0px;
   text-align: center;
 }

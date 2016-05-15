@@ -1,6 +1,7 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 $border-style-1px-black: 1px solid #000000;
 $border-style-1px-grey: 1px solid #737476;
+$border-style-1px-yellow: 1px solid #ffcc00;
 #business-calendar {
   background-color: #ffffff;
   margin: 1em;
@@ -56,6 +57,9 @@ $border-style-1px-grey: 1px solid #737476;
                     margin: .02em !important;
 
                     td {
+                      &.border-black-td {
+                        border: $border-style-1px-grey;
+                      }
                       &.border-black-1-td {
                         border-top: $border-style-1px-grey;
                         border-left: $border-style-1px-grey;
@@ -232,6 +236,101 @@ div {
       border-radius: 4px 0 0 4px;
       background: #000080;
       text-align: center;
+    }
+  }
+}
+
+// Construction Calendar
+
+#construction-calendar {
+  background-color: #ffffff;
+  margin: 1em;
+  padding: 1.25em;
+  border-radius: 5px;
+
+  table {
+
+    thead {
+      tr {
+        th {
+          font-size: .8em;
+          text-align: center;
+          background-color: #000080;
+          color: #ffffff;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          text-align: center;
+          padding: 0.1em !important;
+
+          &.vertical-align-td {
+            text-align: center;
+            color: #000080;
+            vertical-align: middle;
+            border: $border-style-1px-black;
+          }
+
+          &.border-black-td {
+            border: $border-style-1px-black;
+          }
+
+          &.border-bottom-black-td {
+            border-bottom: $border-style-1px-black;
+          }
+
+          table {
+            &.deep-3-table {
+              margin: .02em !important;
+
+              td {
+                &.border-black-1-td {
+                  border-top: $border-style-1px-grey;
+                  border-left: $border-style-1px-grey;
+                  border-right: $border-style-1px-grey;
+                }
+                &.border-black-2-td {
+                  border-left: $border-style-1px-grey;
+                  border-right: $border-style-1px-grey;
+                }
+                &.border-black-3-td {
+                  border-left: $border-style-1px-grey;
+                  border-right: $border-style-1px-grey;
+                  border-bottom: $border-style-1px-grey;
+                }
+
+                input {
+                  border: none;
+                  padding: 0px;
+                }
+
+                select {
+                  border: none;
+                  padding: 1px 0;
+                }
+              }
+            }
+            &.deep-3-table.label-table {
+              td {
+                border: 1px solid #000000;
+                background-color: #969696;
+                color: #ffffff;
+
+                input {
+                  background-color: #969696;
+                  color: #ffffff;
+                  border: none;
+                  padding: 0px;
+                  text-align: center;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -19,7 +19,8 @@ class CreateConsCalTable extends Migration
             $table->integer('office_id');                         // index of office
             $table->integer('company_id');                        // index of company
             $table->integer('company_man_id');                    // index of company man
-            $table->dateTime('main_date')->default('0000-00-00'); // main date of construction calendar
+            $table->date('main_date')->default('0000-00-00');     // main date of construction calendar
+            $table->integer('cell_id');                           // cell id (default 1~3)
             $table->string('field_name');                         // name of field
             $table->integer('char_color');                        // color of character, 1: black(#000000) 2: blue(#0000ff) 3: red(#ff0000)
             $table->string('content');                            // content of construction calendar

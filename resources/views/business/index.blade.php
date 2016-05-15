@@ -8,6 +8,7 @@
     {{-- Date Picker Js --}}
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
     <script>
         $(function() {
             $( "#startDate" ).datepicker({
@@ -23,7 +24,7 @@
                 changeMonth: true,
                 numberOfMonths: 3,
                 onClose: function( selectedDate ) {
-                    $( "#startDate" ).datepicker( "option", "maxDate", selectedDate );
+                    $( "#startDate" ).datepicker("option", "maxDate", selectedDate );
                 }
             });
         });
