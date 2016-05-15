@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\OfficeMan;
 use App\Office;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Request;
 use DB;
 use App\Http\Requests\CreateOfficeManRequest;
@@ -20,16 +20,34 @@ class OfficemanController extends Controller
      */
     public function index()
     {
-        $officemans = OfficeMan::all();
+        /**
+         * Identify session
+         *
+         */
+        if(Session::get('auth')) {
+            $auth = Session::get('auth');
 
-        // Converting office_id to office_name
-        foreach($officemans as $officeman) {
-            $office = Office::where('id', $officeman['office_id'])->first();
-            $officeman['office_name'] = $office['office_name'];
+            if ($auth == "manager") {
+                $officemans = OfficeMan::all();
+
+                // Converting office_id to office_name
+                foreach ($officemans as $officeman) {
+                    $office = Office::where('id', $officeman['office_id'])->first();
+                    $officeman['office_name'] = $office['office_name'];
+                }
+
+                $offices = Office::all();
+                return view('basic.officeman.index', compact('officemans', 'offices'));
+            }
+            else
+            {
+                return view('errors.503');
+            }
         }
-
-        $offices = Office::all();
-        return view('basic.officeman.index', compact('officemans', 'offices'));
+        else
+        {
+            return view('errors.503');
+        }
     }
 
     /**

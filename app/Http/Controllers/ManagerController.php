@@ -20,9 +20,27 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        $managers = Manager::all();
+        /**
+         * Identify session
+         *
+         */
+        if(Session::get('auth')) {
+            $auth = Session::get('auth');
 
-        return view('basic.manager.index', compact('managers'));
+            if ($auth == "manager") {
+                $managers = Manager::all();
+
+                return view('basic.manager.index', compact('managers'));
+            }
+            else
+            {
+                return view('errors.503');
+            }
+        }
+        else
+        {
+            return view('errors.503');
+        }
     }
 
     /**

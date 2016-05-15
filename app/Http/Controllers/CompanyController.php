@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Company;
 use App\Office;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Request;
 use DB;
 use App\Http\Requests\CreateCompanyRequest;
@@ -20,18 +20,36 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
+        /**
+         * Identify session
+         *
+         */
+        if(Session::get('auth')) {
+            $auth = Session::get('auth');
 
-        // Converting office_id to office_name
-        foreach($companies as $company)
-        {
-            $office = Office::where('id', $company['office_id'])->first();
-            $company['office_name'] = $office['office_name'];
+            if ($auth == "manager")
+            {
+                $companies = Company::all();
+
+                // Converting office_id to office_name
+                foreach ($companies as $company) {
+                    $office = Office::where('id', $company['office_id'])->first();
+                    $company['office_name'] = $office['office_name'];
+                }
+
+                $offices = Office::all();
+
+                return view('basic.company.index', compact('companies', 'offices'));
+            }
+            else
+            {
+                return view('errors.503');
+            }
         }
-
-        $offices = Office::all();
-
-        return view('basic.company.index', compact('companies', 'offices'));
+        else
+        {
+            return view('errors.503');
+        }
     }
 
     /**

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 use App\Office;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Request;
 use DB;
 use App\Http\Requests\CreateOfficeRequest;
@@ -19,8 +19,26 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $offices = Office::all();
-        return view('basic.office.index', compact('offices'));
+        /**
+         * Identify session
+         *
+         */
+        if(Session::get('auth')) {
+            $auth = Session::get('auth');
+
+            if ($auth == "manager") {
+                $offices = Office::all();
+                return view('basic.office.index', compact('offices'));
+            }
+            else
+            {
+                return view('errors.503');
+            }
+        }
+        else
+        {
+            return view('errors.503');
+        }
     }
 
     /**

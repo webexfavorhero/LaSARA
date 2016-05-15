@@ -18,6 +18,8 @@
 Route::get('/', 'UserController@index');
 // Login
 Route::post('/branch', 'UserController@login');
+// Go to main menu
+Route::get('/branch', 'UserController@main');
 // Logout
 Route::get('/logout', 'UserController@logout');
 

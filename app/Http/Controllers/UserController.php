@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 use App\User;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Request;
 use DB;
 use App\Http\Requests\CreateUserRequest;
@@ -178,5 +178,23 @@ class UserController extends Controller
 
         Session::flash('success', '正常に削除されました。');
         return redirect('basic/user');
+    }
+
+    /**
+     * Go to main menu
+     */
+    public function main()
+    {
+        /**
+         * Identify session auth
+         */
+        if (Session::get('auth'))
+        {
+            return view('welcome');
+        }
+        else
+        {
+            return view('errors.503');
+        }
     }
 }

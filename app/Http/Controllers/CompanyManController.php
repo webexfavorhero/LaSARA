@@ -10,7 +10,7 @@ use App\Office;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
 use DB;
 use App\Http\Requests\CreateCompanyManRequest;
 
@@ -23,23 +23,40 @@ class CompanyManController extends Controller
      */
     public function index()
     {
-        // All CompanyMans
-        $companymans = CompanyMan::all();
+        /**
+         * Identify session
+         *
+         */
+        if(Session::get('auth')) {
+            $auth = Session::get('auth');
 
-        // Converting office_id, company_id to office_name, company_name
-        foreach($companymans as $companyman)
-        {
-            $office = Office::where('id', $companyman['office_id'])->first();
-            $company = Company::where('id', $companyman['company_id'])->first();
+            if ($auth == "manager") {
+                // All CompanyMans
+                $companymans = CompanyMan::all();
 
-            $companyman['office_name'] = $office['office_name'];
-            $companyman['company_name'] = $company['company_name'];
+                // Converting office_id, company_id to office_name, company_name
+                foreach ($companymans as $companyman) {
+                    $office = Office::where('id', $companyman['office_id'])->first();
+                    $company = Company::where('id', $companyman['company_id'])->first();
+
+                    $companyman['office_name'] = $office['office_name'];
+                    $companyman['company_name'] = $company['company_name'];
+                }
+
+                // All offices
+                $offices = Office::all();
+
+                return view('basic.companyman.index', compact('companymans', 'offices', 'companies'));
+            }
+            else
+            {
+                return view('errors.503');
+            }
         }
-
-        // All offices
-        $offices = Office::all();
-
-        return view('basic.companyman.index', compact('companymans', 'offices', 'companies'));
+        else
+        {
+            return view('errors.503');
+        }
     }
 
     /**

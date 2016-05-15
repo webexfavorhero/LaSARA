@@ -20,14 +20,22 @@
                 num = $(this).attr('data-num');
                 $('#' + num).modal('show');
             });
-            $('.button.save').click(function(){
-
-            });
         })
     </script>
 @stop
 
 @section('content')
+    <section style="padding: 30px;">
+        <div class="ui menu">
+            @foreach($offices as $k => $office)
+                <a class="item @if($office->id == $office_id) active @endif" href="{{ URL::to('construction?office_id=' . $office->id) }}">{{ $office->office_name }}</a>
+            @endforeach
+            <div class="right menu">
+                <a class="item" href="{{ URL::to('branch') }}">メインメニュー</a>
+                <a class="item" href="{{ URL::to('logout') }}">ログアウト</a>
+            </div>
+        </div>
+    </section>
     <section id="construction-calendar">
         <table class="table table-bordered">
             <thead>
@@ -74,6 +82,7 @@
                                                        style="background-color: @if($cons_cal->back_color == 1) #ffffff @elseif($cons_cal->back_color == 2) #ccffcc @elseif($cons_cal->back_color == 3) #ccffff @elseif($cons_cal->back_color == 4) #99ccff @endif ; color: @if($cons_cal->char_color == 1) #000000 @elseif($cons_cal->char_color == 2) #0000ff @elseif($cons_cal->char_color == 3) #ff0000 @endif ; "
                                                        value="{{ $cons_cal->field_name }}" readonly />
                                                 {{-- Modal --}}
+                                                @if($auth == "manager" || $auth == "edit_user")
                                                 <div class="ui small modal" style="height: 780px;" id="{{ $company_man->id }}day{{ $i }}row{{ $j }}">
                                                     <div class="header" style="background-color: #0000ff; color: #ffffff;">
                                                         現　場　登　録
@@ -146,6 +155,26 @@
                                                     </div>
                                                     {!! Form::close() !!}
                                                 </div>
+                                                @elseif($auth == "comm_user")
+                                                <div class="ui small modal" style="height: 250px;" id="{{ $company_man->id }}day{{ $i }}row{{ $j }}">
+                                                    <i class="close icon"></i>
+                                                    <div class="header" style="background-color: #f4cace; color: #FF0000;">
+                                                        警告
+                                                    </div>
+                                                    <div class="image content">
+                                                        <div class="description">
+                                                            <div class="ui header">制限された認証</div>
+                                                            <p>あなたの権限では編集できません。</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="actions">
+                                                        <div class="ui positive right labeled icon button">
+                                                            はい
+                                                            <i class="checkmark icon"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endif

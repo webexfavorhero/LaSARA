@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 use App\Item;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Request;
 use DB;
 use App\Http\Requests\CreateItemRequest;
@@ -19,9 +19,27 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        /**
+         * Identify session
+         *
+         */
+        if(Session::get('auth')) {
+            $auth = Session::get('auth');
 
-        return view('basic.item.index', compact('items'));
+            if ($auth == "manager") {
+                $items = Item::all();
+
+                return view('basic.item.index', compact('items'));
+            }
+            else
+            {
+                return view('errors.503');
+            }
+        }
+        else
+        {
+            return view('errors.503');
+        }
     }
 
     /**
