@@ -26,6 +26,7 @@ class CreateBusiCalTable extends Migration
             $table->string('time');                               // time of period
             $table->integer('order_check')->default('0');         // status of order/estimate. 0: empty(color-white), 1: estimate(color-green: #ccffcc), 2: order(color-pink: #ff99cc)
             $table->integer('edit_status')->default('0');         // status of editing or not editing. 0: not editing, 1: editing
+            $table->string('edit_user');                          // edit username
             $table->timestamps();
         });
     }

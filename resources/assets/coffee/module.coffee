@@ -144,6 +144,73 @@ $( ->
       $("div.order_grid").fadeOut()
 
   ###
+  # Preventing edit for input tag
+  ###
+  $('input.data').mousedown (event) ->
+    elem = $(this)
+
+    preMainDate    = $('#preMainDate').val()
+    preOfficeManId = $('#preOfficeManId').val()
+
+    busi_cal_id    = elem.attr('id')
+
+    main_date     = $('#main_date' + busi_cal_id).val()
+    office_man_id = $('#office_man_id' + busi_cal_id).val()
+    editStatusUrl = $('#editStatusUrl').val()
+
+    user = $('#user').val()
+
+    $('#preMainDate').val(main_date)
+    $('#preOfficeManId').val(office_man_id)
+
+    $.get editStatusUrl, {
+      busi_cal_id: busi_cal_id,
+      user: user,
+      preMainDate: preMainDate,
+      preOfficeManId: preOfficeManId,
+      main_date: main_date,
+      office_man_id: office_man_id
+    }, (data) ->
+      if data == "refuse"
+        elem.prop('readonly', true)
+        alert('これは、別のユーザーが今編集されています。')
+    return
+
+  ###
+  # Preventing edit for select tag
+  ###
+  $('select.data').mousedown (event) ->
+    elem = $(this)
+
+    preMainDate    = $('#preMainDate').val()
+    preOfficeManId = $('#preOfficeManId').val()
+
+    busi_cal_id    = elem.attr('id')
+
+    main_date     = $('#main_date' + busi_cal_id).val()
+    office_man_id = $('#office_man_id' + busi_cal_id).val()
+    editStatusUrl = $('#editStatusUrl').val()
+
+    user = $('#user').val()
+
+    $('#preMainDate').val(main_date)
+    $('#preOfficeManId').val(office_man_id)
+
+    $.get editStatusUrl, {
+      busi_cal_id: busi_cal_id,
+      user: user,
+      preMainDate: preMainDate,
+      preOfficeManId: preOfficeManId,
+      main_date: main_date,
+      office_man_id: office_man_id
+    }, (data) ->
+      if data == "refuse"
+        elem.prop('disabled', true)
+        alert('これは、別のユーザーが今編集されています。')
+    return
+
+
+  ###
   # Construction Calendar
   ###
 

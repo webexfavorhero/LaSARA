@@ -27,6 +27,8 @@ class CreateConsCalTable extends Migration
             $table->integer('back_color');                        // color of background, 1: #ffffff 2: #ccffcc 3: #ccffff 4: #99ccff
             $table->string('start_time');                         // start time of calendar
             $table->string('order_amount');                       // amount of order
+            $table->integer('edit_status')->default('0');         // status of editing or not editing. 0: not editing, 1: editing
+            $table->string('edit_user');                          // edit username
             $table->timestamps();
         });
     }

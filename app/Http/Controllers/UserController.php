@@ -57,12 +57,18 @@ class UserController extends Controller
                 // Assignment session as editable user (permission == 1)
                 Session::set('auth', 'edit_user');
 
+                // Username
+                Session::set('user', $username);
+
                 return view('welcome');
             }
             else if ($permission == '0')
             {
                 // Assignment session as readable user (permission == 0)
                 Session::set('auth', 'comm_user');
+
+                // Username
+                Session::set('user', $username);
 
                 return view('welcome');
             }

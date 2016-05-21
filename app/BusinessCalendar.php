@@ -19,6 +19,7 @@ class BusinessCalendar extends Model
         'time',
         'order_check',
         'edit_status',
+        'edit_user',
         'created_at',
         'updated_at'
     ];

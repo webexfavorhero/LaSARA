@@ -32,9 +32,13 @@ class BusinessController extends Controller
         if(Session::get('auth'))
         {
             /**
+             * Session values
              *
+             * $auth
+             * $user
              */
             $auth = Session::get('auth');
+            $user = Session::get('user');
 
             /**
              * Get search parameters
@@ -194,6 +198,7 @@ class BusinessController extends Controller
 
             return view('business.index', compact(
                 'auth',
+                'user',
                 'offices',
                 'office_mans',
                 'startDate',
@@ -340,5 +345,72 @@ class BusinessController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Check edit status
+     *
+     */
+    public function editCheck()
+    {
+        /*
+         * getting params
+         */
+        $busi_cal_id    = Input::get('busi_cal_id');
+        $user           = Input::get('user');
+        $preMainDate    = Input::get('preMainDate');
+        $preOfficeManId = Input::get('preOfficeManId');
+        $main_date      = Input::get('main_date');
+        $office_man_id  = Input::get('office_man_id');
+
+        $busi_cal       = BusinessCalendar::where('id', $busi_cal_id)->first();
+
+        $busi_cals = BusinessCalendar::where('main_date', $main_date)
+            ->where('office_man_id', $office_man_id)
+            ->get();
+
+        if(Input::get('refresh'))
+        {
+            $refresh = Input::get('refresh');
+            if($refresh == "true")
+            {
+                $user_ = Input::get('user');
+
+                $busi_cals__ = BusinessCalendar::where('edit_user', $user_)
+                    ->get();
+                foreach($busi_cals__ as $busi_cal___)
+                {
+                    $busi_cal___->update(["edit_status" => 0, "edit_user" => ""]);
+                }
+            }
+            echo "refreshed";
+        }
+        else if($busi_cal['edit_status'] == 1 && $busi_cal['edit_user'] == $user)
+        {
+            echo "allow";
+        }
+        else if ($busi_cal['edit_status'] == 1 && $busi_cal['edit_user'] != $user)
+        {
+            echo "refuse";
+        }
+        else
+        {
+            if($preMainDate != $main_date || $preOfficeManId != $office_man_id)
+            {
+                $busi_cals_= BusinessCalendar::where('main_date', $preMainDate)
+                    ->where('office_man_id', $preOfficeManId)
+                    ->get();
+                foreach($busi_cals_ as $busi_cal__)
+                {
+                    $busi_cal__->update(["edit_status" => 0, "edit_user" => ""]);
+                }
+            }
+
+            foreach($busi_cals as $busi_cal_)
+            {
+                $busi_cal_->update(["edit_status" => 1, "edit_user" => $user]);
+            }
+            echo "allow";
+        }
     }
 }

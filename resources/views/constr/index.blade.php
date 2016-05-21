@@ -142,11 +142,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <input type="hidden" name="office_id" id="office_id" value="{{ $office_id }}">
-                                                    <input type="hidden" name="company_id" id="company_id" value="{{ $company_man->company_id }}">
+                                                    <input type="hidden" name="office_id"      id="office_id"      value="{{ $office_id }}">
+                                                    <input type="hidden" name="company_id"     id="company_id"     value="{{ $company_man->company_id }}">
                                                     <input type="hidden" name="company_man_id" id="company_man_id" value="{{ $company_man->id }}">
-                                                    <input type="hidden" name="main_date" id="main_date" value="<?= \Carbon\Carbon::createFromFormat('Y-m-d', $year . "-" . $month . "-" . $i)->toDateString(); ?>">
-                                                    <input type="hidden" name="cell_id" id="cell_id" value="{{ $j + 1 }}">
+                                                    <input type="hidden" name="main_date"      id="main_date"      value="<?= \Carbon\Carbon::createFromFormat('Y-m-d', $year . "-" . $month . "-" . $i)->toDateString(); ?>">
+                                                    <input type="hidden" name="cell_id"        id="cell_id"        value="{{ $j + 1 }}">
                                                     <div class="actions" style="padding: 30px;">
                                                         <div class="ui black deny button">
                                                             いいえ

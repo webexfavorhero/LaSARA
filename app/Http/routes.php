@@ -63,5 +63,6 @@ Route::get('/business', 'BusinessController@index');
 Route::post('/business', 'BusinessController@index');
 Route::get('business/update', 'BusinessController@update');
 Route::get('business/updateOrderState', 'BusinessController@updateOrderState');
+Route::get('business/editCheck', 'BusinessController@editCheck');
 // Construction Calendar
 Route::resource('construction', 'ConstructionController');

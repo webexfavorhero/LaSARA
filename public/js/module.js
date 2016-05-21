@@ -205,11 +205,75 @@
     /*
      * Disabling order_div when clicking mouse button in other elements
      */
-    return $("#business-calendar").click(function(event) {
+    $("#business-calendar").click(function(event) {
       if (event.which !== 3) {
         return $("div.order_grid").fadeOut();
       }
     });
+
+    /*
+     * Preventing edit for input tag
+     */
+    $('input.data').mousedown(function(event) {
+      var busi_cal_id, editStatusUrl, elem, main_date, office_man_id, preMainDate, preOfficeManId, user;
+      elem = $(this);
+      preMainDate = $('#preMainDate').val();
+      preOfficeManId = $('#preOfficeManId').val();
+      busi_cal_id = elem.attr('id');
+      main_date = $('#main_date' + busi_cal_id).val();
+      office_man_id = $('#office_man_id' + busi_cal_id).val();
+      editStatusUrl = $('#editStatusUrl').val();
+      user = $('#user').val();
+      $('#preMainDate').val(main_date);
+      $('#preOfficeManId').val(office_man_id);
+      $.get(editStatusUrl, {
+        busi_cal_id: busi_cal_id,
+        user: user,
+        preMainDate: preMainDate,
+        preOfficeManId: preOfficeManId,
+        main_date: main_date,
+        office_man_id: office_man_id
+      }, function(data) {
+        if (data === "refuse") {
+          elem.prop('readonly', true);
+          return alert('This is being edited now by another user.');
+        }
+      });
+    });
+
+    /*
+     * Preventing edit for select tag
+     */
+    return $('select.data').mousedown(function(event) {
+      var busi_cal_id, editStatusUrl, elem, main_date, office_man_id, preMainDate, preOfficeManId, user;
+      elem = $(this);
+      preMainDate = $('#preMainDate').val();
+      preOfficeManId = $('#preOfficeManId').val();
+      busi_cal_id = elem.attr('id');
+      main_date = $('#main_date' + busi_cal_id).val();
+      office_man_id = $('#office_man_id' + busi_cal_id).val();
+      editStatusUrl = $('#editStatusUrl').val();
+      user = $('#user').val();
+      $('#preMainDate').val(main_date);
+      $('#preOfficeManId').val(office_man_id);
+      $.get(editStatusUrl, {
+        busi_cal_id: busi_cal_id,
+        user: user,
+        preMainDate: preMainDate,
+        preOfficeManId: preOfficeManId,
+        main_date: main_date,
+        office_man_id: office_man_id
+      }, function(data) {
+        if (data === "refuse") {
+          elem.prop('disabled', true);
+          return alert('This is being edited now by another user.');
+        }
+      });
+    });
+
+    /*
+     * Construction Calendar
+     */
   });
 
 }).call(this);

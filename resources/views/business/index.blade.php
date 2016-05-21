@@ -183,7 +183,7 @@
                                                         @if($auth == "comm_user")
                                                             <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="" id="{{ $busi_cal->id }}" day="{{ $i - 1 }}" man_num="{{ $o }}" width_cell="0" height_cell="{{ $j }}" value="{{ $busi_cal->address }}" readonly/>
                                                         @else
-                                                            <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" day="{{ $i - 1 }}" man_num="{{ $o }}" width_cell="0" height_cell="{{ $j }}" value="{{ $busi_cal->address }}"/>
+                                                            <input type="text" class="col-lg-12 data" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" day="{{ $i - 1 }}" man_num="{{ $o }}" width_cell="0" height_cell="{{ $j }}" value="{{ $busi_cal->address }}"/>
                                                         @endif
                                                         {{-- Order Check --}}
                                                         <div class="order_grid" id="{{ $busi_cal->id }}" >
@@ -199,13 +199,13 @@
                                                 <tr>
                                                     {{-- Field --}}
                                                     <td class="col-sm-12 border-black-2-td">
-                                                        <input type="text" class="col-lg-12" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal->field_name }}" @if($auth == "comm_user") readonly @endif/>
+                                                        <input type="text" class="col-lg-12 data" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal->field_name }}" @if($auth == "comm_user") readonly @endif/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     {{-- Item --}}
                                                     <td class="col-sm-12 border-black-3-td">
-                                                        <select class="col-lg-12" style="color: @if($trans_item_mark_color == '1') #000000 @elseif($trans_item_mark_color == '2') #ff0000 @else #0000ff @endif" onchange="this.style.color=this.options[this.selectedIndex].style.color" name="trans_item_id" id="{{ $busi_cal->id }}" @if($auth == "comm_user") disabled @endif>
+                                                        <select class="col-lg-12 data" style="color: @if($trans_item_mark_color == '1') #000000 @elseif($trans_item_mark_color == '2') #ff0000 @else #0000ff @endif" onchange="this.style.color=this.options[this.selectedIndex].style.color" name="trans_item_id" id="{{ $busi_cal->id }}" @if($auth == "comm_user") disabled @endif>
                                                             <option value="0" @if($busi_cal->trans_item_id == 0) selected @endif></option>
                                                             @foreach($trans_items as $trans_item)
                                                                 @if($trans_item->id == $busi_cal->trans_item_id)
@@ -221,12 +221,14 @@
                                                 <tr>
                                                     {{-- Time --}}
                                                     <td class="col-sm-12 border-black-4-td">
-                                                        <input type="text" class="col-lg-12" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal->time }}" @if($auth == "comm_user") readonly @endif/>
+                                                        <input type="text" class="col-lg-12 data" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal->time }}" @if($auth == "comm_user") readonly @endif/>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </td>
                                     </tr>
+                                        <input type="hidden" name="main_date{{ $busi_cal->id }}" id="main_date{{ $busi_cal->id }}" value="{{ $main_date }}">
+                                        <input type="hidden" name="office_man_id{{ $busi_cal->id }}" id="office_man_id{{ $busi_cal->id }}" value="{{ $office_man->id }}">
                                 @endfor
                             </table>
                         </td>
@@ -257,7 +259,7 @@
                                                         @if($auth == "comm_user")
                                                             <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="" id="{{ $busi_cal->id }}" day="{{ $i - 1 }}" man_num="{{ $o }}" width_cell="1" height_cell="{{ $j }}" value="{{ $busi_cal->address }}" readonly/>
                                                         @else
-                                                            <input type="text" class="col-lg-12" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" day="{{ $i - 1 }}" man_num="{{ $o }}" width_cell="1" height_cell="{{ $j }}" value="{{ $busi_cal->address }}"/>
+                                                            <input type="text" class="col-lg-12 data" style="background-color: @if($busi_cal->order_check == 1) #ccffcc @elseif($busi_cal->order_check == 2) #ff99cc @else #ffffff @endif" name="address" id="{{ $busi_cal->id }}" day="{{ $i - 1 }}" man_num="{{ $o }}" width_cell="1" height_cell="{{ $j }}" value="{{ $busi_cal->address }}"/>
                                                         @endif
                                                         {{-- Order Check --}}
                                                         <div class="order_grid" id="{{ $busi_cal->id }}" >
@@ -273,13 +275,13 @@
                                                 <tr>
                                                     {{-- Field --}}
                                                     <td class="col-sm-12 border-black-2-td">
-                                                        <input type="text" class="col-lg-12" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal->field_name }}" @if($auth == "comm_user") readonly @endif/>
+                                                        <input type="text" class="col-lg-12 data" name="field_name" id="{{ $busi_cal->id }}" value="{{ $busi_cal->field_name }}" @if($auth == "comm_user") readonly @endif/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     {{-- Item --}}
                                                     <td class="col-sm-12 border-black-3-td">
-                                                        <select class="col-lg-12" style="color: @if($trans_item_mark_color == '1') #000000 @elseif($trans_item_mark_color == '2') #ff0000 @else #0000ff @endif" onchange="this.style.color=this.options[this.selectedIndex].style.color" name="trans_item_id" id="{{ $busi_cal->id }}" @if($auth == "comm_user") disabled @endif >
+                                                        <select class="col-lg-12 data" style="color: @if($trans_item_mark_color == '1') #000000 @elseif($trans_item_mark_color == '2') #ff0000 @else #0000ff @endif" onchange="this.style.color=this.options[this.selectedIndex].style.color" name="trans_item_id" id="{{ $busi_cal->id }}" @if($auth == "comm_user") disabled @endif >
                                                             <option value="0" @if($busi_cal->trans_item_id == 0) selected @endif></option>
                                                             @foreach($trans_items as $trans_item)
                                                                 @if($trans_item->id == $busi_cal->trans_item_id)
@@ -295,12 +297,14 @@
                                                 <tr>
                                                     {{-- Time --}}
                                                     <td class="col-sm-12 border-black-4-td">
-                                                        <input type="text" class="col-lg-12" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal->time }}" @if($auth == "comm_user") readonly @endif/>
+                                                        <input type="text" class="col-lg-12 data" name="time" id="{{ $busi_cal->id }}" value="{{ $busi_cal->time }}" @if($auth == "comm_user") readonly @endif/>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </td>
                                     </tr>
+                                        <input type="hidden" name="main_date{{ $busi_cal->id }}" id="main_date{{ $busi_cal->id }}" value="{{ $main_date }}">
+                                        <input type="hidden" name="office_man_id{{ $busi_cal->id }}" id="office_man_id{{ $busi_cal->id }}" value="{{ $office_man->id }}">
                                 @endfor
                             </table>
                         </td>
@@ -311,5 +315,23 @@
         </table>
         <input type="hidden" name="url" id="url" value="{{ URL::to('business/update') }}"/>
         <input type="hidden" name="updateOrderStateUrl" id="updateOrderStateUrl" value="{{ URL::to('business/updateOrderState') }}"/>
+        <input type="hidden" name="editStatusUrl" id="editStatusUrl" value="{{ URL::to('business/editCheck') }}">
+
+        <input type="hidden" name="user" id="user" value="{{ $user }}">
+
+        <input type="hidden" name="preMainDate" id="preMainDate" value="">
+        <input type="hidden" name="preOfficeManId" id="preOfficeManId" value="">
     </section>
+    <script>
+        $(function() {
+            user = $('#user').val();
+            url  = $('#editStatusUrl').val();
+            $.get(url, {
+                refresh: "true",
+                user: user
+            }, function(data) {
+                console.log(data);
+            });
+        });
+    </script>
 @stop
