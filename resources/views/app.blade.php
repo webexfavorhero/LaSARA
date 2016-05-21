@@ -1,11 +1,3 @@
-<?php
-    session_start();
-    if (!isset($_SESSION['EXPIRES']) || $_SESSION['EXPIRES'] < time()+120) {
-        session_destroy();
-        $_SESSION = array();
-    }
-    $_SESSION['EXPIRES'] = time() + 120;
-?>
 <!DOCTYPE HTML>
 <html>
 <head>
